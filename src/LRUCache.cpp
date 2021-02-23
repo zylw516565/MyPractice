@@ -18,12 +18,12 @@ void LRUCache::put(int key, int value)
 		if (nodesMap_.size() >= cacheSize_)
 		{
 			removeNode(listTail_);
-			
-
-
-
+			auto iter = nodesMap_.find(listTail_->key);
+			if (iter != nodesMap_.end())
+			{
+				nodesMap_.erase(iter);
+			}
 		}
-
 
 		nodesMap_.insert(NodesType::value_type(key, newNode));
 		setHead(newNode);    //放入头部
@@ -60,13 +60,19 @@ void LRUCache::setHead(LRUNode* node)
 	if (NULL == node)
 		return;
 
-	if (node == listHead_ || node == listHead_)
-		return;
+	node->prev = NULL;
+	if (NULL == listHead_)
+	{
+		listHead_ = node;
+	}
+	else
+	{
+		node->next = listHead_;
+		listHead_->prev = node;
+	}
 
-	LRUNode* tmpNode = listHead_->next;
-	listHead_->next = node;
-	node->prev = listHead_;
-
-	tmpNode->prev = node;
-	node->next = tmpNode;
+	if (NULL == listTail_)
+	{
+		listTail_ = listHead_;
+	}
 }
