@@ -144,6 +144,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\LRUCache.h" />
+    <ClInclude Include="src\LRUCacheV2.h" />
     <ClInclude Include="src\VsTest.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

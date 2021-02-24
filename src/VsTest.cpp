@@ -2,6 +2,9 @@
 #include <iostream>
 #include <vector>
 
+#include "LRUCache.h"
+#include "LRUCacheV2.h"
+
 using  std::cout;
 using  std::endl;
 using  std::vector;
@@ -20,7 +23,6 @@ using  std::vector;
 //
 //class B : public noncopyable
 //{ };
-
 
 class BitMap
 {
@@ -68,9 +70,36 @@ private:
 	vector<int> bitTable_;
 };
 
-
 int main()
 {
+
+	LRUCache* lruCache = new LRUCache(3);
+	lruCache->put(1, 1);
+	lruCache->put(2, 3);
+	cout << lruCache->getSize() << endl;
+	lruCache->put(3, 5);
+	cout << lruCache->getSize() << endl;
+	cout << lruCache->get(1) << endl;
+	lruCache->put(6, 3);
+	cout << lruCache->getSize() << endl;
+	cout << lruCache->get(3) << endl;
+	cout << lruCache->get(1) << endl;
+	cout << lruCache->get(2) << endl;
+
+	LRUCacheV2* lruCacheV2 = new LRUCacheV2(3);
+	lruCacheV2->Set(1, 1);
+	lruCacheV2->Set(2, 3);
+	cout << lruCacheV2->GetSize() << endl;
+	lruCacheV2->Set(3, 5);
+	cout << lruCacheV2->GetSize() << endl;
+	cout << lruCacheV2->Get(1) << endl;
+	lruCacheV2->Set(6, 3);
+	cout << lruCacheV2->GetSize() << endl;
+	cout << lruCacheV2->Get(3) << endl;
+	cout << lruCacheV2->Get(1) << endl;
+	cout << lruCacheV2->Get(2) << endl;
+
+
 	//B b;
 	//B b1(b);
 	//B b2 = b;
@@ -86,26 +115,26 @@ int main()
 	//	<<
 	//endl;
 
-	BitMap bitMap(127);
-	bitMap.setBit(100);
-	bitMap.setBit(101);
-	bitMap.setBit(127);
-	bitMap.setBit(128);
+	//BitMap bitMap(127);
+	//bitMap.setBit(100);
+	//bitMap.setBit(101);
+	//bitMap.setBit(127);
+	//bitMap.setBit(128);
 
-	cout 
-		<< "bitMap.getBit(99) = "	<< bitMap.getBit(99)	<< "\n"
-		<< "bitMap.getBit(100) = " << bitMap.getBit(100) << "\n"
-		<< "bitMap.getBit(101) = " << bitMap.getBit(101) << "\n"
-		<< "bitMap.getBit(102) = " << bitMap.getBit(102) << "\n"
-		<< "bitMap.getBit(128) = " << bitMap.getBit(128) << "\n"		
-		<< 
-	endl;
+	//cout 
+	//	<< "bitMap.getBit(99) = "	<< bitMap.getBit(99)	<< "\n"
+	//	<< "bitMap.getBit(100) = " << bitMap.getBit(100) << "\n"
+	//	<< "bitMap.getBit(101) = " << bitMap.getBit(101) << "\n"
+	//	<< "bitMap.getBit(102) = " << bitMap.getBit(102) << "\n"
+	//	<< "bitMap.getBit(128) = " << bitMap.getBit(128) << "\n"		
+	//	<< 
+	//endl;
 
-	bitMap.resetBit(100);
-	cout
-		<< "bitMap.getBit(100) = " << bitMap.getBit(100) << "\n"
-		<< 
-	endl;
+	//bitMap.resetBit(100);
+	//cout
+	//	<< "bitMap.getBit(100) = " << bitMap.getBit(100) << "\n"
+	//	<< 
+	//endl;
 
 	cout << "hello world!!!" << endl;
 	return 0;

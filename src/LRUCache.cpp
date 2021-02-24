@@ -15,7 +15,7 @@ void LRUCache::put(int key, int value)
 	{
 		//新添加
 		LRUNode* newNode = new LRUNode ( key, value );
-		if (nodesMap_.size() >= cacheSize_)
+		if (nodesMap_.size() >= static_cast<unsigned int>(cacheSize_))
 		{
 			removeNode(listTail_);
 			auto iter = nodesMap_.find(listTail_->key);
@@ -30,6 +30,26 @@ void LRUCache::put(int key, int value)
 	}
 }
 
+int LRUCache::get(int key)
+{
+	auto iter = nodesMap_.find(key);
+	if (iter != nodesMap_.end())
+	{
+		removeNode(iter->second);
+		setHead(iter->second);
+		return iter->second->value;
+	}
+	else
+	{
+		return -1;
+	}
+}
+
+int LRUCache::getSize()
+{
+	return nodesMap_.size();
+}
+
 void LRUCache::removeNode(LRUNode* node)
 {
 	if (NULL == node)
@@ -40,15 +60,14 @@ void LRUCache::removeNode(LRUNode* node)
 	{
 		listHead_ = node->next;
 		listHead_->prev = NULL;
-	}
-
-	//如果是尾指针
+	}	
+	
 	if (node->next == NULL)
-	{
+	{//如果是尾指针
 		listTail_ = node->prev;
 		listTail_->next = NULL;
 	}
-
+	else
 	{
 		node->next->prev = node->prev;
 		node->prev->next = node->next;
@@ -60,6 +79,7 @@ void LRUCache::setHead(LRUNode* node)
 	if (NULL == node)
 		return;
 
+	node->next = listHead_;
 	node->prev = NULL;
 	if (NULL == listHead_)
 	{
@@ -67,8 +87,8 @@ void LRUCache::setHead(LRUNode* node)
 	}
 	else
 	{
-		node->next = listHead_;
 		listHead_->prev = node;
+		listHead_ = node;
 	}
 
 	if (NULL == listTail_)

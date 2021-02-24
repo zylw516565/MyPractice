@@ -35,7 +35,10 @@ public:
 	}
 
 public:
+
 	void put(int key, int value);
+	int get(int key);
+	int getSize();
 
 private:
 
@@ -49,4 +52,16 @@ private:
 
 	int    cacheSize_;
 	NodesType    nodesMap_;
+};
+
+class CPPLRUCache
+{
+
+public:
+	//typedef map<int, LRUNode*>  NodesType;
+
+private:
+	int    cacheSize_;
+
+	//map<>   nodesMap_;
 };
