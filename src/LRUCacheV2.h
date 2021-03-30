@@ -137,6 +137,8 @@ public:
 			mp[key] = NewNode;
 
 		}
+
+		return 0;
 	}
 
 

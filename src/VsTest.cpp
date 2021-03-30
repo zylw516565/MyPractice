@@ -4,6 +4,7 @@
 
 #include "LRUCache.h"
 #include "LRUCacheV2.h"
+#include "Sort.h"
 
 using  std::cout;
 using  std::endl;
@@ -70,8 +71,12 @@ private:
 	vector<int> bitTable_;
 };
 
+ int Data[] = { 4,5,6,1,3,2 };
+
 int main()
 {
+	bubbleSort(Data, sizeof(Data)/sizeof(int));
+
 
 	LRUCache* lruCache = new LRUCache(3);
 	lruCache->put(1, 1);
