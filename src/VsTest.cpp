@@ -71,12 +71,32 @@ private:
 	vector<int> bitTable_;
 };
 
- int Data[] = { 4,5,6,1,3,2 };
+int Data[] = { 4,5,6,1,3,2 };
+
+int DataV2[] = { 4,5,6,1,3,2 };
+
+void Output(int* data, int len)
+{
+	for (int i = 0; i < len; ++i)
+	{
+		cout << data[i] << " ";
+	}
+	cout << endl;
+}
 
 int main()
 {
+	cout << "Before bubbleSort, Data[]: ";
+	Output(Data, sizeof(Data) / sizeof(int));
 	bubbleSort(Data, sizeof(Data)/sizeof(int));
+	cout << "After bubbleSort, Data[]: ";
+	Output(Data, sizeof(Data) / sizeof(int));
 
+	cout << "Before insertSort, Data[]: ";
+	Output(DataV2, sizeof(DataV2) / sizeof(int));
+	insertSort(DataV2, sizeof(DataV2)/sizeof(int));
+	cout << "After insertSort, Data[]: ";
+	Output(DataV2, sizeof(DataV2) / sizeof(int));
 
 	LRUCache* lruCache = new LRUCache(3);
 	lruCache->put(1, 1);
