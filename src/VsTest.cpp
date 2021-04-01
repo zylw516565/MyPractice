@@ -75,6 +75,8 @@ int Data[] = { 4,5,6,1,3,2 };
 
 int DataV2[] = { 4,5,6,1,3,2 };
 
+vector<int> mergeData = {11,8,3,9,7,1,2,5};
+
 void Output(int* data, int len)
 {
 	for (int i = 0; i < len; ++i)
@@ -83,6 +85,16 @@ void Output(int* data, int len)
 	}
 	cout << endl;
 }
+
+void OutputV2(const vector<int>& data)
+{
+	for (int i = 0; i < data.size(); ++i)
+	{
+		cout << data[i] << " ";
+	}
+	cout << endl;
+}
+
 
 int main()
 {
@@ -97,6 +109,14 @@ int main()
 	insertSort(DataV2, sizeof(DataV2)/sizeof(int));
 	cout << "After insertSort, Data[]: ";
 	Output(DataV2, sizeof(DataV2) / sizeof(int));
+
+	cout << "Before merge_sort, mergeData[]: ";
+	OutputV2(mergeData);
+	merge_sort(mergeData, 0, mergeData.size()-1);
+	cout << "After merge_sort, mergeData[]: ";
+	OutputV2(mergeData);
+
+
 
 	LRUCache* lruCache = new LRUCache(3);
 	lruCache->put(1, 1);
