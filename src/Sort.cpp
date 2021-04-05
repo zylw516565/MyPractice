@@ -48,6 +48,56 @@ void insertSort(int* array, int len)
 	}
 }
 
+void mergeV2(int* array, int left, int right)
+{
+	int len = right - left;
+	int mid = (left + right) / 2;
+	int i = left; int j = mid + 1; int k = 0;
+
+	int* tmp = new int[len + 1];
+
+	while (i <= mid && j <= right)
+	{
+		if (array[i] <= array[j])
+		{
+			tmp[k++] = array[i++];
+		}
+		else {
+			tmp[k++] = array[j++];
+		}
+	}
+
+	//如果i区间还有剩余数据,则把剩余全部放入tmp数组中
+	while (i <= mid)
+	{
+		tmp[k++] = array[i++];
+	}
+
+	//如果j区间还有剩余数据,则把剩余全部放入tmp数组中
+	while (j <= right)
+	{
+		tmp[k++] = array[j++];
+	}
+
+	//最后把tmp中排序后的数据拷贝到源数据中
+	i = left, k = 0;
+	while (i <= right)
+	{
+		array[i++] = tmp[k++];
+	}
+}
+
+void merger_sortV2(int* array, int left, int right)
+{
+	if (left >= right || nullptr == array) return;
+
+	int mid = (left + right) / 2;
+
+	merger_sortV2(array, left, mid);
+	merger_sortV2(array, mid + 1, right);
+	mergeV2(array, left, right);
+}
+
 void merge(vector<int>& array, int left, int rigth)
 {
 	int mid = (left + rigth) / 2;
@@ -63,16 +113,19 @@ void merge(vector<int>& array, int left, int rigth)
 		}
 	}
 
+	//如果i区间还有剩余数据,则把剩余全部放入tmp数组中
 	while (i <= mid)
 	{
 		tmp[k++] = array[i++];
 	}
 
+	//如果j区间还有剩余数据,则把剩余全部放入tmp数组中
 	while (j <= rigth)
 	{
 		tmp[k++] = array[j++];
 	}
 
+	//最后把tmp中排序后的数据拷贝到源数据中
 	i = left, k = 0;
 	while (i <= rigth)
 	{
@@ -88,4 +141,19 @@ void merge_sort(vector<int>& array, int left, int rigth)
 	merge_sort(array, left, mid);
 	merge_sort(array, mid + 1, rigth);
 	merge(array, left, rigth);
+}
+
+int partition(vector<int>& array, int left, int right)
+{
+	return 0;
+}
+
+void quickSort(vector<int>& array, int left, int right)
+{
+	if (left >= right || array.empty())
+		return;
+
+	int mid = partition(array, left, right);
+	quickSort(array, left, mid - 1);
+	quickSort(array, mid + 1, right);
 }
