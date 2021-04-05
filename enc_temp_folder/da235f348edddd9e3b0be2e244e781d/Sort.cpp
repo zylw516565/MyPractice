@@ -145,7 +145,7 @@ void merge_sort(vector<int>& array, int left, int rigth)
 
 int partition(vector<int>& array, int left, int right)
 {
-	int pivot = array[right];
+	int& pivot = array[right];
 
 	int i = left;
 	for (int j = left; j < right; ++j)
@@ -160,8 +160,12 @@ int partition(vector<int>& array, int left, int right)
 	}
 
 	int tmp = array[i];
-	array[i] = array[right];
-	array[right] = tmp;
+	array[i] = pivot;
+	pivot = tmp;
+
+	//int tmp = array[i];
+	//array[i] = array[right];
+	//array[right] = tmp;
 
 	return i;
 }

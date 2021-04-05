@@ -78,6 +78,8 @@ int DataV2[] = { 4,5,6,1,3,2 };
 vector<int> mergeData = {11,8,3,9,7,1,2,5};
 int mergeDataV2[] = {11,8,3,9,7,1,2,5 };
 
+vector<int> quickData = { 11,8,3,9,7,1,2,5 };
+
 void Output(int* data, int len)
 {
 	for (int i = 0; i < len; ++i)
@@ -95,7 +97,6 @@ void OutputV2(const vector<int>& data)
 	}
 	cout << endl;
 }
-
 
 int main()
 {
@@ -125,6 +126,13 @@ int main()
 	merger_sortV2(mergeDataV2, 0, sizeof(mergeDataV2)/sizeof(int) - 1);
 	cout << "After merge_sortV2, mergeDataV2[]: ";
 	Output(mergeDataV2, sizeof(mergeDataV2) / sizeof(int));
+	cout << endl;
+
+	cout << "Before quickSort, quickData[]: ";
+	OutputV2(quickData);
+	quickSort(quickData, 0, quickData.size() - 1);
+	cout << "After quickSort, quickData[]: ";
+	OutputV2(quickData);
 	cout << endl;
 
 
