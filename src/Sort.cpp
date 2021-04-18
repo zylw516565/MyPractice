@@ -175,3 +175,119 @@ void quickSort(vector<int>& array, int left, int right)
 	quickSort(array, left, mid - 1);
 	quickSort(array, mid + 1, right);
 }
+
+//数组,[3,2,5,1,4] 这些面值的卡片,只能头移到尾部,或者尾部移到头部,
+//只有当头部的卡片最小时才能删除,每次移动一次耗费的能量值为卡片面值
+//问:把所有卡片删除,需要耗费的最小能量值是多少?
+
+int moveDelete(vector<int>& array, int left, int right)
+{
+	int sumLeft = 0, sumRight = 0, min;
+	int begin = left, end = right;
+	while (left <= right)
+	{
+		if (array[left] <= array[right])
+		{
+			min = array[left];
+			sumLeft += array[right--];
+		}else{
+			min = array[right];
+			sumRight = array[left++];
+		}
+	}
+
+	//TODO: 每次移除一个元素
+	if (sumLeft <= sumRight)
+	{
+		while (begin <= left)
+		{
+			//array.begin();
+			//array.insert();
+		}
+
+	}
+	else
+	{
+	}
+
+
+	return (sumLeft < sumRight)?sumLeft:sumRight;
+}
+
+void moveCard(vector<int>& array, int left, int right, int& sum)
+{
+	if (left >= right) return;
+
+	sum += moveDelete(array, left, right);
+
+	moveCard(array, left, right-1, sum);
+}
+
+typedef struct ListNode{
+	ListNode* next;
+	int       value;
+}Node;
+
+bool hasLoop(Node* head)
+{
+	if (NULL == head)
+		return false;
+
+	Node* slow = head;
+	Node* fast = head;
+
+	while (slow->next != nullptr 
+		   && fast->next->next != nullptr)
+	{
+		slow = slow->next;
+		fast = fast->next->next;
+		if (slow == fast)
+			return true;
+	}
+
+	return false;
+}
+
+/* 实现一个函数 void f(const char* s), 把s字符串中除了注释部分打印出来 */
+
+void f(const char* s)
+{
+	if (nullptr == s) return;
+
+	while (*s)
+	{
+		if (*s == '/')
+		{
+			s++;
+
+			if (*s == '/')
+			{
+				//row comment
+				s++;
+				while (*s != '\n')
+				{
+					s++;
+				}
+				s++; continue;
+			}
+			else if (*s == '*')
+			{
+				//block comment
+				s++;
+				while (*s != '*')
+				{
+					s++;
+				}
+
+				if (*s++ == '/')
+				{
+					s++; continue;
+				}
+			}
+		}
+
+		cout << *s;
+		s++;
+	}
+
+}

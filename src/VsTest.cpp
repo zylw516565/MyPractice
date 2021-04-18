@@ -98,8 +98,15 @@ void OutputV2(const vector<int>& data)
 	cout << endl;
 }
 
+char comment[] = "abc...   //zhushi\n876996997/abcd,,,,*//*ijihi**/end";
+
+#include "ProducerConsumer.h"
+
 int main()
 {
+	startProduceConsume();
+	f(comment);
+
 	cout << "Before bubbleSort, Data[]: ";
 	Output(Data, sizeof(Data) / sizeof(int));
 	bubbleSort(Data, sizeof(Data)/sizeof(int));

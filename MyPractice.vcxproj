@@ -140,12 +140,14 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="src\LRUCache.cpp" />
+    <ClCompile Include="src\ProducerConsumer.cpp" />
     <ClCompile Include="src\Sort.cpp" />
     <ClCompile Include="src\VsTest.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\LRUCache.h" />
     <ClInclude Include="src\LRUCacheV2.h" />
+    <ClInclude Include="src\ProducerConsumer.h" />
     <ClInclude Include="src\Sort.h" />
     <ClInclude Include="src\VsTest.h" />
   </ItemGroup>

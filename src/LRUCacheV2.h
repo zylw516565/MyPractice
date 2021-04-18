@@ -44,8 +44,8 @@ public:
 	LRUCacheV2(int size)
 	{
 		m_capacity = size;
-		pHead == NULL;
-		pTail == NULL;
+		pHead = NULL;
+		pTail = NULL;
 	}
 
 	~LRUCacheV2()
@@ -59,9 +59,9 @@ public:
 			mp.erase(it++);    //** 注意：一定要这样写，it++ 放在其他任何一个地方都会导致其迭代器失效。
 		}
 		delete pHead;
-		pHead == NULL;
+		pHead = NULL;
 		delete pTail;
-		pTail == NULL;
+		pTail = NULL;
 
 	}
 	//** 这里只是移除，并不删除节点

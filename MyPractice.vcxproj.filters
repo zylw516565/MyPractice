@@ -20,19 +20,25 @@
     <ClCompile Include="src\Sort.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
+    <ClCompile Include="src\ProducerConsumer.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\LRUCache.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="src\VsTest.h">
-      <Filter>头文件</Filter>
+      <Filter>源文件</Filter>
     </ClInclude>
     <ClInclude Include="src\LRUCacheV2.h">
-      <Filter>头文件</Filter>
+      <Filter>源文件</Filter>
     </ClInclude>
     <ClInclude Include="src\Sort.h">
-      <Filter>头文件</Filter>
+      <Filter>源文件</Filter>
+    </ClInclude>
+    <ClInclude Include="src\VsTest.h">
+      <Filter>源文件</Filter>
+    </ClInclude>
+    <ClInclude Include="src\ProducerConsumer.h">
+      <Filter>源文件</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
