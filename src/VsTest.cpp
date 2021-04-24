@@ -6,6 +6,7 @@
 #include "LRUCacheV2.h"
 #include "Sort.h"
 #include "../StringValueConvert.h"
+#include "../SharedPtr.h"
 
 using  std::cout;
 using  std::endl;
@@ -106,7 +107,8 @@ char comment[] = "abc...   //zhushi\n876996997/abcd,,,,*//*ijihi**/end";
 int main()
 {
 
-
+	//SharedPtr::test()
+	SharedPtr::test();
 
 	//StringValueConvert
 	StringValueConvert::begin();

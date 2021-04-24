@@ -25,6 +25,9 @@
     <ClCompile Include="StringValueConvert.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
+    <ClCompile Include="SharedPtr.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\LRUCache.h">
@@ -46,6 +49,9 @@
       <Filter>源文件</Filter>
     </ClInclude>
     <ClInclude Include="StringValueConvert.h">
+      <Filter>源文件</Filter>
+    </ClInclude>
+    <ClInclude Include="SharedPtr.h">
       <Filter>源文件</Filter>
     </ClInclude>
   </ItemGroup>
