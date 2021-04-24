@@ -144,6 +144,7 @@
     <ClCompile Include="src\ProducerConsumer.cpp" />
     <ClCompile Include="src\Sort.cpp" />
     <ClCompile Include="src\VsTest.cpp" />
+    <ClCompile Include="StringValueConvert.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="PimplMode.h" />
@@ -152,6 +153,7 @@
     <ClInclude Include="src\ProducerConsumer.h" />
     <ClInclude Include="src\Sort.h" />
     <ClInclude Include="src\VsTest.h" />
+    <ClInclude Include="StringValueConvert.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

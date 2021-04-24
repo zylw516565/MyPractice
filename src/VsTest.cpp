@@ -5,6 +5,7 @@
 #include "LRUCache.h"
 #include "LRUCacheV2.h"
 #include "Sort.h"
+#include "../StringValueConvert.h"
 
 using  std::cout;
 using  std::endl;
@@ -104,6 +105,12 @@ char comment[] = "abc...   //zhushi\n876996997/abcd,,,,*//*ijihi**/end";
 
 int main()
 {
+
+
+
+	//StringValueConvert
+	StringValueConvert::begin();
+
 	startProduceConsume();
 	f(comment);
 
