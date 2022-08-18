@@ -4,6 +4,7 @@
 
 #include "LRUCache.h"
 #include "LRUCacheV2.h"
+#include "LRUCacheV3.h"
 #include "Sort.h"
 #include "../StringValueConvert.h"
 #include "../SharedPtr.h"
@@ -104,9 +105,29 @@ char comment[] = "abc...   //zhushi\n876996997/abcd,,,,*//*ijihi**/end";
 
 #include "ProducerConsumer.h"
 
+int fabnacci(int n)
+{
+	if (1 == n) return 1;
+	if (2 == n) return 2;
+	return fabnacci(n - 1) + fabnacci(n - 2);
+}
 int main()
 {
 
+//     const char* strArray = "hello world";
+//     char strArray[] = "hello world";
+//     cout << "sizeof(strArray): " << sizeof(strArray) << endl;
+//     cout << "pos: " << find(strArray, strlen(strArray), 'a') << endl;
+//     cout << "pos: " << find(strArray, strlen(strArray), 'b') << endl;
+//     cout << "pos: " << find(strArray, strlen(strArray), 'l') << endl;
+//     cout << "pos: " << find(strArray, strlen(strArray), 'd') << endl;
+	int result = -1;
+	QuickSortSolution objQSort;
+	cout << objQSort.findKthLargest(quickData, 0) << endl; objQSort.clear();
+	cout << objQSort.findKthLargest(quickData, 3) << endl; objQSort.clear();
+	cout << objQSort.findKthLargest(quickData, 1) << endl; objQSort.clear();
+	cout << objQSort.findKthLargest(quickData, 9) << endl; objQSort.clear();
+	
 	//SharedPtr::test()
 	SharedPtr::test();
 
@@ -178,7 +199,29 @@ int main()
 	cout << lruCacheV2->Get(1) << endl;
 	cout << lruCacheV2->Get(2) << endl;
 
+	double       g_fDistributeInterval = 0.0;
+	int nDistributeInterval;
+	nDistributeInterval = 3;
+	g_fDistributeInterval = (double) nDistributeInterval / 1000;
+	cout << "g_fDistributeInterval " << g_fDistributeInterval << endl;
+	printf("g_fDistributeInterval [%f]", g_fDistributeInterval);
 
+    nDistributeInterval = 30;
+    g_fDistributeInterval = (double) nDistributeInterval / 1000;
+    cout << "g_fDistributeInterval " << g_fDistributeInterval << endl;
+
+
+	LRUCacheV3 objLRUCacheV3(3);
+	objLRUCacheV3.print(); cout << "maxSize: " << objLRUCacheV3.maxSize() << endl;
+	cout << "size: " << objLRUCacheV3.size() << endl;
+	objLRUCacheV3.get(1);
+	objLRUCacheV3.print();
+	objLRUCacheV3.get(2);
+	objLRUCacheV3.print();
+	objLRUCacheV3.get(3);
+	objLRUCacheV3.print();
+	objLRUCacheV3.get(1);
+	objLRUCacheV3.print();
 	//B b;
 	//B b1(b);
 	//B b2 = b;

@@ -54,5 +54,8 @@
     <ClInclude Include="SharedPtr.h">
       <Filter>源文件</Filter>
     </ClInclude>
+    <ClInclude Include="src\LRUCacheV3.h">
+      <Filter>源文件</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
