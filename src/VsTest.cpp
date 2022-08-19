@@ -111,6 +111,14 @@ int fabnacci(int n)
 	if (2 == n) return 2;
 	return fabnacci(n - 1) + fabnacci(n - 2);
 }
+
+#include <algorithm>
+
+int compareFunc(const void* a, const void* b)
+{
+	return *(int*)a - *(int*)b;
+}
+
 int main()
 {
 
@@ -121,6 +129,18 @@ int main()
 //     cout << "pos: " << find(strArray, strlen(strArray), 'b') << endl;
 //     cout << "pos: " << find(strArray, strlen(strArray), 'l') << endl;
 //     cout << "pos: " << find(strArray, strlen(strArray), 'd') << endl;
+	Output(Data, sizeof(Data) / sizeof(int));
+	qsort(Data, sizeof(Data)/sizeof(int), sizeof(int), compareFunc);
+	Output(Data, sizeof(Data) / sizeof(int));
+/*	std::sort(quickData.begin(), quickData.end());*/
+	std::stable_sort(quickData.begin(), quickData.end());
+
+	for (auto data : quickData)
+	{
+		cout << data << " ";
+	}
+	cout << endl;
+
 	int result = -1;
 	QuickSortSolution objQSort;
 	cout << objQSort.findKthLargest(quickData, 0) << endl; objQSort.clear();
