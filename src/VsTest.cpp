@@ -83,6 +83,8 @@ int mergeDataV2[] = {11,8,3,9,7,1,2,5 };
 
 vector<int> quickData = { 11,8,3,9,7,1,2,5 };
 
+vector<int> binarySearchData = { 1,2,3,4,5,6,7,8,9,10 };
+
 void Output(int* data, int len)
 {
 	for (int i = 0; i < len; ++i)
@@ -129,6 +131,11 @@ int main()
 //     cout << "pos: " << find(strArray, strlen(strArray), 'b') << endl;
 //     cout << "pos: " << find(strArray, strlen(strArray), 'l') << endl;
 //     cout << "pos: " << find(strArray, strlen(strArray), 'd') << endl;
+
+	cout << binarySearch(binarySearchData, 3) << endl;
+	cout << binarySearch(binarySearchData, 9) << endl;
+	cout << binarySearch(binarySearchData, 11) << endl;
+
 	Output(Data, sizeof(Data) / sizeof(int));
 	qsort(Data, sizeof(Data)/sizeof(int), sizeof(int), compareFunc);
 	Output(Data, sizeof(Data) / sizeof(int));

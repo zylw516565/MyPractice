@@ -17,6 +17,9 @@ void merger_sortV2(int* array, int left, int right);
 void quickSort(vector<int>& array, int left, int right);
 
 void f(const char* s);
+
+int binarySearch(const vector<int>& array, int key);
+
 class QuickSortSolution 
 {
 private:

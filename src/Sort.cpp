@@ -291,3 +291,49 @@ void f(const char* s)
 	}
 
 }
+
+const int key = 3;
+
+void binarySearchRecursive(const vector<int>& array, int begin, int end)
+{
+	if (begin >= end) return;
+	
+	int mid = (begin + end) / 2;
+	if (array[mid] == key)
+	{
+		//indexBS = mid;
+		return;
+	}
+	else if (array[mid] < key)
+	{
+		binarySearchRecursive(array, begin, mid - 1);
+	}
+	else
+	{
+		binarySearchRecursive(array, mid + 1, end);
+	}
+}
+
+int binarySearch(const vector<int>& array, int key)
+{
+	int mid;
+	int begin = 0; int end = array.size() - 1;
+	while (begin <= end)
+    {
+		mid = begin + ((end - begin) >> 1);
+
+        if (key == array[mid])
+        {
+            return mid;
+        }else if (key < array[mid])
+		{
+			end = mid - 1;
+		}
+		else
+		{
+			begin = mid + 1;
+		}
+	}
+
+	return -1;
+}
