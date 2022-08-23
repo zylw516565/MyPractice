@@ -325,7 +325,8 @@ int binarySearch(const vector<int>& array, int key)
         if (key == array[mid])
         {
             return mid;
-        }else if (key < array[mid])
+        }
+		else if (key < array[mid])
 		{
 			end = mid - 1;
 		}
@@ -336,4 +337,32 @@ int binarySearch(const vector<int>& array, int key)
 	}
 
 	return -1;
+}
+
+int findFirstEqual(const vector<int>& array, int key)
+{
+    int mid;
+    int low = 0; int hight = array.size() - 1;
+    while (low <= hight)
+    {
+        mid = low + ((hight - low) >> 1);
+
+        if (key == array[mid])
+        {
+			if (0 == mid || key != array[mid - 1]) 
+				return mid;
+			else
+				hight = mid - 1;
+        }
+        else if (key < array[mid])
+		{
+			hight = mid - 1;
+        }
+        else
+		{
+			low = mid + 1;
+        }
+    }
+
+    return -1;
 }

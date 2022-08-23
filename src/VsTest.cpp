@@ -84,6 +84,7 @@ int mergeDataV2[] = {11,8,3,9,7,1,2,5 };
 vector<int> quickData = { 11,8,3,9,7,1,2,5 };
 
 vector<int> binarySearchData = { 1,2,3,4,5,6,7,8,9,10 };
+vector<int> findFirstEqualData = { 1,2,3,4,5,5,5,8,9,10,11 };
 
 void Output(int* data, int len)
 {
@@ -131,6 +132,10 @@ int main()
 //     cout << "pos: " << find(strArray, strlen(strArray), 'b') << endl;
 //     cout << "pos: " << find(strArray, strlen(strArray), 'l') << endl;
 //     cout << "pos: " << find(strArray, strlen(strArray), 'd') << endl;
+
+	cout << "findFirstEqual(findFirstEqualData, 5) = " <<  findFirstEqual(findFirstEqualData, 5) << endl;
+	cout << "findFirstEqual(findFirstEqualData, 2) = " << findFirstEqual(findFirstEqualData, 2) << endl;
+	cout << "findFirstEqual(findFirstEqualData, 3) = " << findFirstEqual(findFirstEqualData, 3) << endl;
 
 	cout << binarySearch(binarySearchData, 3) << endl;
 	cout << binarySearch(binarySearchData, 9) << endl;

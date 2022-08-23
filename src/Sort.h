@@ -20,6 +20,8 @@ void f(const char* s);
 
 int binarySearch(const vector<int>& array, int key);
 
+int findFirstEqual(const vector<int>& array, int key);
+
 class QuickSortSolution 
 {
 private:
