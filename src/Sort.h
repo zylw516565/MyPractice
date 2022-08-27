@@ -22,6 +22,12 @@ int binarySearch(const vector<int>& array, int key);
 
 int findFirstEqual(const vector<int>& array, int key);
 
+int findLastEqual(const vector<int>& array, int key);
+
+int findFirstGreaterThan(const vector<int>& array, int key);
+
+int findLastLessThan(const vector<int>& array, int key);
+
 class QuickSortSolution 
 {
 private:

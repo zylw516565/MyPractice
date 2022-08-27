@@ -366,3 +366,87 @@ int findFirstEqual(const vector<int>& array, int key)
 
     return -1;
 }
+
+int findLastEqual(const vector<int>& array, int key)
+{
+    int mid;
+	int low = 0; int hight = array.size() - 1; int tail = hight;
+    while (low <= hight)
+    {
+        mid = low + ((hight - low) >> 1);
+
+        if (key == array[mid])
+        {
+            if (mid == tail || key != array[mid + 1])
+                return mid;
+            else
+                low = mid + 1;
+        }
+        else if (key < array[mid])
+        {
+            hight = mid - 1;
+        }
+        else
+        {
+            low = mid + 1;
+        }
+    }
+
+    return -1;
+}
+
+int findFirstGreaterThan(const vector<int>& array, int key)
+{
+    int mid;
+    int low = 0; int hight = array.size() - 1; int tail = hight;
+    while (low <= hight)
+    {
+        mid = low + ((hight - low) >> 1);
+
+        if (key == array[mid])
+        {
+            if (mid < tail && key < array[mid + 1])
+                return mid + 1;
+            else
+                low = mid + 1;
+        }
+        else if (key < array[mid])
+        {
+            hight = mid - 1;
+        }
+        else
+        {
+            low = mid + 1;
+        }
+    }
+
+    return -1;
+}
+
+int findLastLessThan(const vector<int>& array, int key)
+{
+    int mid;
+    int low = 0; int hight = array.size() - 1; int tail = hight;
+    while (low <= hight)
+    {
+        mid = low + ((hight - low) >> 1);
+
+        if (key == array[mid])
+        {
+            if (mid > 0 && key > array[mid - 1])
+                return mid - 1;
+            else
+                hight = mid - 1;
+        }
+        else if (key < array[mid])
+        {
+            hight = mid - 1;
+        }
+        else
+        {
+            low = mid + 1;
+        }
+    }
+
+    return -1;
+}

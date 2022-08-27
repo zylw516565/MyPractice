@@ -133,6 +133,18 @@ int main()
 //     cout << "pos: " << find(strArray, strlen(strArray), 'l') << endl;
 //     cout << "pos: " << find(strArray, strlen(strArray), 'd') << endl;
 
+    cout << "findLastLessThan(findFirstEqualData, 5) = " << findLastLessThan(findFirstEqualData, 5) << endl;
+    cout << "findLastLessThan(findFirstEqualData, 2) = " << findLastLessThan(findFirstEqualData, 2) << endl;
+    cout << "findLastLessThan(findFirstEqualData, 3) = " << findLastLessThan(findFirstEqualData, 3) << endl;
+
+    cout << "findFirstGreaterThan(findFirstEqualData, 5) = " << findFirstGreaterThan(findFirstEqualData, 5) << endl;
+    cout << "findFirstGreaterThan(findFirstEqualData, 2) = " << findFirstGreaterThan(findFirstEqualData, 2) << endl;
+    cout << "findFirstGreaterThan(findFirstEqualData, 3) = " << findFirstGreaterThan(findFirstEqualData, 3) << endl;
+
+    cout << "findLastEqual(findFirstEqualData, 5) = " << findLastEqual(findFirstEqualData, 5) << endl;
+    cout << "findLastEqual(findFirstEqualData, 2) = " << findLastEqual(findFirstEqualData, 2) << endl;
+    cout << "findLastEqual(findFirstEqualData, 3) = " << findLastEqual(findFirstEqualData, 3) << endl;
+
 	cout << "findFirstEqual(findFirstEqualData, 5) = " <<  findFirstEqual(findFirstEqualData, 5) << endl;
 	cout << "findFirstEqual(findFirstEqualData, 2) = " << findFirstEqual(findFirstEqualData, 2) << endl;
 	cout << "findFirstEqual(findFirstEqualData, 3) = " << findFirstEqual(findFirstEqualData, 3) << endl;
