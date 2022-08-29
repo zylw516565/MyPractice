@@ -95,3 +95,49 @@ public:
 
 
 };
+
+class Heap
+{
+private:
+    int count_;
+    int maxCount_;
+    vector<int> data_;
+
+public:
+    Heap(int capacity)
+    {
+        data_.resize(capacity + 1);
+        maxCount_ = capacity;
+    }
+
+    void setData(const vector<int>& other)
+    {
+        data_ = other;
+        count_ = data_.size() - 1;
+    }
+
+    const vector<int>& data()
+    {
+        return data_;
+    }
+
+    int insert(int value)
+    {
+        //堆满了,直接返回
+        if (count_ >= maxCount_)
+            return -1;
+
+        count_++;
+        data_[count_] = value;
+
+        int i = count_;
+        while (data_[i] > data_[i / 2] && i / 2 > 0)
+        {
+            std::swap(data_[i], data_[i / 2]);
+            i = i / 2;
+        }
+
+        return i;
+    }
+
+};
