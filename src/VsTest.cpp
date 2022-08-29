@@ -137,13 +137,6 @@ int main()
 	unsigned short bTmp = 0xffff;
 	cout << "bTmp " << bTmp << endl;
 
-	vector<int> vecTmp;
-	vecTmp.resize(10);
-	vecTmp = {};
-	vecTmp.push_back(2);
-	//vecTmp[1] = 33;
-	OutputV2(vecTmp);
-
 	//const vector<int> vecHeapData = {0,33,17,21,16,13,15,9,5,6,7,8,1,2};
 	//Heap objHeap(30);
 	//objHeap.setData(vecHeapData);
@@ -151,16 +144,27 @@ int main()
 	//objHeap.insert(22);
 	//OutputV2(objHeap.data());
 
-	const vector<int> vecHeapDataV2 = { 33,17,21,16,13,15,9,5,6,7,8,1,2 };
-    Heap objHeapV2(30);
-    OutputV2(objHeapV2.data());
-	for (auto i: vecHeapDataV2)
+	//const vector<int> vecHeapDataV2 = { 33,17,21,16,13,15,9,5,6,7,8,1,2 };
+ //   Heap objHeapV2(30);
+ //   OutputV2(objHeapV2.data());
+	//for (auto i: vecHeapDataV2)
+	//{
+	//	objHeapV2.insert(i);
+	//}
+ //   OutputV2(objHeapV2.data());
+	//objHeapV2.insert(22);
+ //   OutputV2(objHeapV2.data());
+
+	const vector<int> vecHeapDataV3 = { 33,27,21,16,13,15,19,5,6,7,8,1,2,12};
+	Heap objHeapV3(30);
+	OutputV2(objHeapV3.data());
+	for (auto i : vecHeapDataV3)
 	{
-		objHeapV2.insert(i);
+		objHeapV3.insert(i);
 	}
-    OutputV2(objHeapV2.data());
-	objHeapV2.insert(22);
-    OutputV2(objHeapV2.data());
+	OutputV2(objHeapV3.data());
+	objHeapV3.removeMax();
+	OutputV2(objHeapV3.data());
 
     cout << "findLastLessThan(findFirstEqualData, 5) = " << findLastLessThan(findFirstEqualData, 5) << endl;
     cout << "findLastLessThan(findFirstEqualData, 2) = " << findLastLessThan(findFirstEqualData, 2) << endl;

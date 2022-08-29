@@ -140,4 +140,38 @@ public:
         return i;
     }
 
+    void removeMax()
+    {
+        //堆为空,直接返回
+        if (count_ <= 0) return;
+
+        //把最后一个元素放到堆顶
+        data_[1] = data_[count_]; data_[count_] = 0;
+        count_--;
+        heapify(1);
+        return;
+    }
+
+    int heapify(int root)
+    {
+        if (root < 1) return -1;
+
+        int i = root;
+        while (!(data_[i] >= data_[2*i] && data_[i] >= data_[2*i + 1]))
+        {
+            if (data_[2*i] >= data_[2*i + 1])
+            {
+                std::swap(data_[i], data_[2*i]);
+                i = 2 * i;
+            }
+            else
+            {
+                std::swap(data_[i], data_[2*i + 1]);
+                i = 2*i + 1;
+            }
+        }
+
+        return i;
+    }
+
 };
