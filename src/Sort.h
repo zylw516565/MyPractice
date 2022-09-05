@@ -175,3 +175,88 @@ public:
     }
 
 };
+
+class HeapV2
+{
+private:
+    int count_;
+    int maxCount_;
+    vector<int> data_;
+
+
+public:
+    HeapV2() = default;
+    ~HeapV2() = default;
+
+    void buildHeap(vector<int>& data)
+    {
+        if (data.empty()) return;
+
+        heapify(data, data.size() - 1);
+    }
+
+    void heapify(vector<int>& data, int count)
+    {
+        if (count <= 1) return;
+
+        int start = count / 2;
+        while (start >= 1)
+        {
+            int i = start;
+            while ((2 * i + 1) <= count)
+            {
+                if (data[i] < data[2 * i] && data[2 * i] >= data[2 * i + 1])
+                {
+                    std::swap(data[i], data[2 * i]);
+                    i = 2 * i;
+                }
+
+                if (data[i] < data[2 * i + 1] && data[2 * i + 1] >= data[2 * i])
+                {
+                    std::swap(data[i], data[2 * i + 1]);
+                    i = 2 * i + 1;
+                }
+            }
+
+            start--;
+        }
+    }
+
+};
+
+class NiceHeap
+{
+private:
+    int count_;
+    int maxCount_;
+    vector<int> data_;
+
+
+public:
+    NiceHeap() = default;
+    ~NiceHeap() = default;
+
+    void buildHeap(vector<int>& data)
+    {
+        if (data.size() <= 1) return;
+
+        int n = data.size() - 1;
+        for (int i = n/2; i >= 1; --i)
+        {
+            heapify(data, n, i);
+        }
+    }
+
+    void heapify(vector<int>& data, int n, int i)
+    {
+        while (true)
+        {
+            int maxPos = i;
+            if (2 * i <= n && data[i] < data[2 * i]) maxPos = 2 * i;
+            if (2 * i + 1 <= n && data[maxPos] < data[2 * i+1]) maxPos = 2 * i+1;
+            if (maxPos == i) break;
+            std::swap(data[maxPos], data[i]);
+            i = maxPos;
+        }
+    }
+};

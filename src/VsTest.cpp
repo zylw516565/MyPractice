@@ -9,6 +9,9 @@
 #include "../StringValueConvert.h"
 #include "../SharedPtr.h"
 
+#include <fstream>      // std::filebuf
+#include <sstream>      // std::stringstream 
+
 using  std::cout;
 using  std::endl;
 using  std::vector;
@@ -124,6 +127,9 @@ int compareFunc(const void* a, const void* b)
 
 int main()
 {
+	char tmpA = 206;
+	printf("char tmpA = 206; tmpA = %d\n", tmpA);
+
 
 //     const char* strArray = "hello world";
 //     char strArray[] = "hello world";
@@ -132,10 +138,6 @@ int main()
 //     cout << "pos: " << find(strArray, strlen(strArray), 'b') << endl;
 //     cout << "pos: " << find(strArray, strlen(strArray), 'l') << endl;
 //     cout << "pos: " << find(strArray, strlen(strArray), 'd') << endl;
-	short aTmp = 0xfffe;
-	cout << "aTmp " << aTmp << " " << sizeof(aTmp) << endl;
-	unsigned short bTmp = 0xffff;
-	cout << "bTmp " << bTmp << endl;
 
 	//const vector<int> vecHeapData = {0,33,17,21,16,13,15,9,5,6,7,8,1,2};
 	//Heap objHeap(30);
@@ -155,16 +157,27 @@ int main()
 	//objHeapV2.insert(22);
  //   OutputV2(objHeapV2.data());
 
-	const vector<int> vecHeapDataV3 = { 33,27,21,16,13,15,19,5,6,7,8,1,2,12};
-	Heap objHeapV3(30);
-	OutputV2(objHeapV3.data());
-	for (auto i : vecHeapDataV3)
-	{
-		objHeapV3.insert(i);
-	}
-	OutputV2(objHeapV3.data());
-	objHeapV3.removeMax();
-	OutputV2(objHeapV3.data());
+	//const vector<int> vecHeapDataV3 = { 33,27,21,16,13,15,19,5,6,7,8,1,2,12};
+	//Heap objHeapV3(30);
+	//OutputV2(objHeapV3.data());
+	//for (auto i : vecHeapDataV3)
+	//{
+	//	objHeapV3.insert(i);
+	//}
+	//OutputV2(objHeapV3.data());
+	//objHeapV3.removeMax();
+	//OutputV2(objHeapV3.data());
+
+	vector<int> vecHeapDataV4 = { 0,7,5,19,8,4,1,20,13,16};
+	HeapV2 objHeapV4;
+	objHeapV4.buildHeap(vecHeapDataV4);
+	OutputV2(vecHeapDataV4);
+
+	vector<int> vecHeapDataV5 = { 0,7,5,19,8,4,1,20,13,16 };
+	NiceHeap objHeapV5;
+	objHeapV5.buildHeap(vecHeapDataV5);
+	OutputV2(vecHeapDataV5);
+
 
     cout << "findLastLessThan(findFirstEqualData, 5) = " << findLastLessThan(findFirstEqualData, 5) << endl;
     cout << "findLastLessThan(findFirstEqualData, 2) = " << findLastLessThan(findFirstEqualData, 2) << endl;
