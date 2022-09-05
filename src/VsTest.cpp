@@ -127,9 +127,6 @@ int compareFunc(const void* a, const void* b)
 
 int main()
 {
-	char tmpA = 206;
-	printf("char tmpA = 206; tmpA = %d\n", tmpA);
-
 
 //     const char* strArray = "hello world";
 //     char strArray[] = "hello world";
@@ -168,16 +165,18 @@ int main()
 	//objHeapV3.removeMax();
 	//OutputV2(objHeapV3.data());
 
-	vector<int> vecHeapDataV4 = { 0,7,5,19,8,4,1,20,13,16};
-	HeapV2 objHeapV4;
-	objHeapV4.buildHeap(vecHeapDataV4);
-	OutputV2(vecHeapDataV4);
+	//vector<int> vecHeapDataV4 = { 0,7,5,19,8,4,1,20,13,16};
+	//HeapV2 objHeapV4;
+	//objHeapV4.buildHeap(vecHeapDataV4);
+	//OutputV2(vecHeapDataV4);
 
 	vector<int> vecHeapDataV5 = { 0,7,5,19,8,4,1,20,13,16 };
+	vector<int> vecHeapDataV6 = vecHeapDataV5;
 	NiceHeap objHeapV5;
 	objHeapV5.buildHeap(vecHeapDataV5);
 	OutputV2(vecHeapDataV5);
-
+	objHeapV5.sort(vecHeapDataV6);
+	OutputV2(vecHeapDataV6);
 
     cout << "findLastLessThan(findFirstEqualData, 5) = " << findLastLessThan(findFirstEqualData, 5) << endl;
     cout << "findLastLessThan(findFirstEqualData, 2) = " << findLastLessThan(findFirstEqualData, 2) << endl;

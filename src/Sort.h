@@ -236,6 +236,19 @@ public:
     NiceHeap() = default;
     ~NiceHeap() = default;
 
+    void sort(vector<int>& data)
+    {
+        buildHeap(data);
+
+        int count = data.size() - 1;
+        while (count > 1)
+        {
+            std::swap(data[1], data[count]);
+            count--;
+            heapify(data, count, 1);
+        }
+    }
+
     void buildHeap(vector<int>& data)
     {
         if (data.size() <= 1) return;
@@ -246,6 +259,8 @@ public:
             heapify(data, n, i);
         }
     }
+
+private:
 
     void heapify(vector<int>& data, int n, int i)
     {
