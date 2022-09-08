@@ -8,6 +8,7 @@
 #include "Sort.h"
 #include "../StringValueConvert.h"
 #include "../SharedPtr.h"
+#include "Graph.h"
 
 #include <fstream>      // std::filebuf
 #include <sstream>      // std::stringstream 

@@ -151,6 +151,7 @@
   <ItemGroup>
     <ClInclude Include="PimplMode.h" />
     <ClInclude Include="SharedPtr.h" />
+    <ClInclude Include="src\Graph.h" />
     <ClInclude Include="src\LRUCache.h" />
     <ClInclude Include="src\LRUCacheV2.h" />
     <ClInclude Include="src\LRUCacheV3.h" />
