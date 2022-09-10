@@ -171,6 +171,22 @@ int main()
 	//objHeapV4.buildHeap(vecHeapDataV4);
 	//OutputV2(vecHeapDataV4);
 
+	Graph objGraph(8);
+	objGraph.addEdge(0, 1);
+	objGraph.addEdge(0, 3);
+	objGraph.addEdge(1, 2);
+	objGraph.addEdge(1, 4);
+	objGraph.addEdge(3, 4);
+	objGraph.addEdge(2, 5);
+	objGraph.addEdge(4, 5);
+	objGraph.addEdge(4, 6);
+	objGraph.addEdge(5, 7);
+	objGraph.addEdge(6, 7);
+	//广度优先
+	objGraph.bfs(0, 6);
+
+
+
 	vector<int> vecHeapDataV5 = { 0,7,5,19,8,4,1,20,13,16 };
 	vector<int> vecHeapDataV6 = vecHeapDataV5;
 	NiceHeap objHeapV5;

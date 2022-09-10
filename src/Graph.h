@@ -67,10 +67,9 @@ private:
     void print(const vector<int>& p_vecPrev, const int start, int target)
     {
         if (p_vecPrev[target] != -1 && start != target) {
-            target--;
             print(p_vecPrev, start, p_vecPrev[target]);
         }
 
-        cout << target + " ";
+        cout << target << " ";
     }
 };
