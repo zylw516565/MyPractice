@@ -185,7 +185,19 @@ int main()
 	//广度优先
 	objGraph.bfs(0, 6);
 
-
+	Graph objGraphV2(9);
+	objGraphV2.addEdge(1, 2);
+	objGraphV2.addEdge(1, 4);
+	objGraphV2.addEdge(2, 3);
+	objGraphV2.addEdge(2, 5);
+	objGraphV2.addEdge(3, 6);
+	objGraphV2.addEdge(4, 5);
+	objGraphV2.addEdge(5, 6);
+	objGraphV2.addEdge(5, 7);
+	objGraphV2.addEdge(6, 8);
+	objGraphV2.addEdge(7, 8);
+	//深度优先
+	objGraphV2.dfs(1, 7);
 
 	vector<int> vecHeapDataV5 = { 0,7,5,19,8,4,1,20,13,16 };
 	vector<int> vecHeapDataV6 = vecHeapDataV5;

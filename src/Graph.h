@@ -13,6 +13,9 @@ private:
     int count_;  //¶¥µã¸öÊý
     vector<list<int>> adjList_;
 
+    //for dfs
+    bool found_ = false;
+
 public:
     Graph(const int count)
     :count_(count)
@@ -41,6 +44,9 @@ public:
 
         vector<int> vecPrev;
         vecPrev.resize(count_);
+        for (auto& elment : vecPrev) {
+            elment = -1;
+        }
 
         while (!queQueue.empty()) {
             int w = queQueue.front(); queQueue.pop();
@@ -62,7 +68,43 @@ public:
         }
     }
 
+    void dfs(const int start, const int target)
+    {
+        if (start == target) return;
+
+        vector<bool> vecVisited;
+        vecVisited.resize(count_);
+        vecVisited[start] = true;
+
+        vector<int> vecPrev;
+        vecPrev.resize(count_);
+        for (auto& elment : vecPrev) {
+            elment = -1;
+        }
+
+        recurDFS(vecVisited, vecPrev, start, target);
+        print(vecPrev, start, target); cout << endl;
+    }
+
 private:
+
+    void recurDFS(vector<bool>& vecVisited, vector<int>& vecPrev, const int start, const int target)
+    {
+        if (found_) return;
+
+        vecVisited[start] = true;
+        if (start == target){
+            found_ = true;
+            return;
+        }
+
+        for (auto elment : adjList_[start]) {
+            if (!vecVisited[elment]) {
+                vecPrev[elment] = start;
+                recurDFS(vecVisited, vecPrev, elment, target);
+            }
+        }
+    }
 
     void print(const vector<int>& p_vecPrev, const int start, int target)
     {
