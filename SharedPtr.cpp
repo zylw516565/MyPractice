@@ -3,7 +3,7 @@
 #include <memory>
 #include <iostream>
 
-using std::auto_ptr;
+//using std::auto_ptr;
 
 using std::unique_ptr;
 using std::make_unique;
@@ -22,53 +22,53 @@ unique_ptr<int> func(int val)
 
 void SharedPtr::test()
 {
-    //std::auto_ptr
-    //初始化方式1
-    auto_ptr<int> ap1(new int(8));
-    cout << "  *ap1: " << *ap1 << "  ap1.get(): " << ap1.get() << endl;
-    //初始化方式2
-    auto_ptr<int> ap2;
-    ap2.reset(new int(8));
-    cout << "  *ap2: " << *ap2
-        << "  ap2.get(): " << ap2.get() << endl;
+    ////std::auto_ptr
+    ////初始化方式1
+    //auto_ptr<int> ap1(new int(8));
+    //cout << "  *ap1: " << *ap1 << "  ap1.get(): " << ap1.get() << endl;
+    ////初始化方式2
+    //auto_ptr<int> ap2;
+    //ap2.reset(new int(8));
+    //cout << "  *ap2: " << *ap2
+    //    << "  ap2.get(): " << ap2.get() << endl;
 
-    //测试拷贝构造
-    auto_ptr<int> ap3(new int(2));
-    auto_ptr<int> ap4(ap3);
-    if (nullptr != ap3.get())
-    {
-        cout << "ap3 is not nullptr" << endl;
-    }else {
+    ////测试拷贝构造
+    //auto_ptr<int> ap3(new int(2));
+    //auto_ptr<int> ap4(ap3);
+    //if (nullptr != ap3.get())
+    //{
+    //    cout << "ap3 is not nullptr" << endl;
+    //}else {
 
-        cout << "ap3 is nullptr" << endl;
-    }
+    //    cout << "ap3 is nullptr" << endl;
+    //}
 
-    if (nullptr != ap4.get())
-    {
-        cout << "ap4 is not nullptr" << endl;
-    }else {
-        cout << "ap4 is nullptr" << endl;
-    }
+    //if (nullptr != ap4.get())
+    //{
+    //    cout << "ap4 is not nullptr" << endl;
+    //}else {
+    //    cout << "ap4 is nullptr" << endl;
+    //}
 
-    //测试赋值构造
-    auto_ptr<int> ap5(new int(5));
-    auto_ptr<int> ap6 = ap5;
-    if (nullptr != ap5.get())
-    {
-        cout << "ap5 is not nullptr" << endl;
-    }
-    else {
+    ////测试赋值构造
+    //auto_ptr<int> ap5(new int(5));
+    //auto_ptr<int> ap6 = ap5;
+    //if (nullptr != ap5.get())
+    //{
+    //    cout << "ap5 is not nullptr" << endl;
+    //}
+    //else {
 
-        cout << "ap5 is nullptr" << endl;
-    }
+    //    cout << "ap5 is nullptr" << endl;
+    //}
 
-    if (nullptr != ap6.get())
-    {
-        cout << "ap6 is not nullptr" << endl;
-    }
-    else {
-        cout << "ap6 is nullptr" << endl;
-    }
+    //if (nullptr != ap6.get())
+    //{
+    //    cout << "ap6 is not nullptr" << endl;
+    //}
+    //else {
+    //    cout << "ap6 is nullptr" << endl;
+    //}
 
     //-----------------------------------------------
 
