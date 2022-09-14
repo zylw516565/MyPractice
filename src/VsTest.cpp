@@ -9,6 +9,8 @@
 #include "../StringValueConvert.h"
 #include "../SharedPtr.h"
 #include "Graph.h"
+#include "StringMatch.h"
+
 
 #include <fstream>      // std::filebuf
 #include <sstream>      // std::stringstream 
@@ -198,6 +200,26 @@ int main()
 	objGraphV2.addEdge(7, 8);
 	//深度优先
 	objGraphV2.dfs(1, 7);
+
+	string strMainString("aabcaaaba");
+	string strTarget("aa");
+	StringMatch objStringMatch;
+	objStringMatch.match(strMainString, strTarget);
+
+	//错误,待修改
+	//int start = 0;
+	//while (start <= strMainString.size() - 1)
+	//{
+	//	int index = strMainString.find(strTarget, start);
+	//	if (index != string::npos)
+	//	{
+	//		cout << "Equal string start index: " << index << endl;
+	//		start = index;
+	//	}
+	//	else {
+	//		break;
+	//	}
+	//}
 
 	vector<int> vecHeapDataV5 = { 0,7,5,19,8,4,1,20,13,16 };
 	vector<int> vecHeapDataV6 = vecHeapDataV5;

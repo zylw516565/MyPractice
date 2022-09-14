@@ -157,6 +157,7 @@
     <ClInclude Include="src\LRUCacheV3.h" />
     <ClInclude Include="src\ProducerConsumer.h" />
     <ClInclude Include="src\Sort.h" />
+    <ClInclude Include="src\StringMatch.h" />
     <ClInclude Include="src\VsTest.h" />
     <ClInclude Include="StringValueConvert.h" />
   </ItemGroup>
