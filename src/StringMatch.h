@@ -46,3 +46,36 @@ public:
 
     }
 };
+
+class BMMatch
+{
+private:
+    const int maxHashSize_ = 256;
+    vector<int> vecList_;
+
+
+public:
+    BMMatch()
+    {
+        vecList_.resize(maxHashSize_, -1);
+    }
+
+    void buildList(const string& strPatternStr)
+    {
+        int nStart = strPatternStr.size() - 1;
+        while (nStart >= 0)
+        {
+            char tmp = strPatternStr[nStart];
+            if (vecList_[tmp] == -1)
+            {
+                vecList_[tmp] = nStart;
+            }
+
+            nStart--;
+        }
+
+    }
+
+
+
+};
