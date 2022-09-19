@@ -60,22 +60,60 @@ public:
         vecList_.resize(maxHashSize_, -1);
     }
 
-    void buildList(const string& strPatternStr)
+    int match(const string& strMaster, const string& strPatternStr, vector<int>& vecBCList)
     {
-        int nStart = strPatternStr.size() - 1;
-        while (nStart >= 0)
+        if (strMaster.size() < strPatternStr.size()
+            || strMaster.empty()
+            || strPatternStr.empty()
+            || vecBCList.empty()){
+            return -1;
+        }
+
+        buildList(strPatternStr, vecBCList);
+
+        int nMasterBegin = 0; int nPatternEnd = strPatternStr.size() - 1;
+        while (strMaster.size() - nMasterBegin >= strPatternStr.size())
         {
-            char tmp = strPatternStr[nStart];
-            if (vecList_[tmp] == -1)
+            int j;
+            for (j = nPatternEnd; j >= 0; --j)
             {
-                vecList_[tmp] = nStart;
+                if (strPatternStr[j] != strMaster[nMasterBegin + j]) break;
             }
 
-            nStart--;
+            if (j < 0) {
+                return nMasterBegin;
+            }
+
+            nMasterBegin = nMasterBegin + j + vecBCList[strMaster[nMasterBegin + j]];
+
+//             int si = j;
+//             char cBadCharacter = strMaster[nMasterBegin + j];
+//             int xi = vecBCList[cBadCharacter];
+//             if (xi == -1)
+//             {
+//                 nMasterBegin = si - xi;
+//             }
+//             else
+//             {
+//                 //TODO:应用好后缀规则?
+//             }
+
         }
 
     }
 
+    void buildList(const string& strPatternStr, vector<int>& vecBCList)
+    {
+        vecBCList.resize(maxHashSize_, -1);
+
+        for (int i=0; i < strPatternStr.size(); ++i)
+        {
+            int nASCII = static_cast<int>(strPatternStr[i]);
+            vecBCList[nASCII] = i;
+        }
+    }
+
+private:
 
 
 };

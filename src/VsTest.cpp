@@ -226,8 +226,8 @@ int main()
 	call_Emplace();
 
 	string strPatternStr("abda");
-	BMMatch objBMMatch;
-	objBMMatch.buildList(strPatternStr);
+	BMMatch objBMMatch;  vector<int> vecBCList;
+	objBMMatch.buildList(strPatternStr, vecBCList);
 
 	vector<int> vecHeapDataV5 = { 0,7,5,19,8,4,1,20,13,16 };
 	vector<int> vecHeapDataV6 = vecHeapDataV5;
