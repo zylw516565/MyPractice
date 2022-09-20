@@ -106,3 +106,15 @@ void call_Emplace()
 
 	int x;
 }
+
+void call_UniquePtr()
+{
+	std::unique_ptr<int> sp1(new int(123));
+
+	std::unique_ptr<int> sp2;
+	sp2.reset(new int(123));
+
+	std::unique_ptr<int> sp3 = std::make_unique<int>(123);
+// 	std::unique_ptr<int> sp4(sp3);
+// 	std::unique_ptr<int> sp5 = sp3;
+}

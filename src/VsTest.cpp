@@ -224,6 +224,7 @@ int main()
 
 	call_StructuredBinding();
 	call_Emplace();
+	call_UniquePtr();
 
 	string strPatternStr("abda");
 	BMMatch objBMMatch;  vector<int> vecBCList;
