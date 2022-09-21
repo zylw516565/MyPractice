@@ -69,40 +69,52 @@ public:
             return -1;
         }
 
-        buildList(strPatternStr, vecBCList);
+        generateBC(strPatternStr, vecBCList);
 
-        int nMasterBegin = 0; int nPatternEnd = strPatternStr.size() - 1;
+        vector<int> suffix; vector<bool> prefix;
+        generateGS(strPatternStr, suffix, prefix);
+
+        int nMasterBegin = 0; 
+        int nPatternEnd = strPatternStr.size() - 1;
+        int nPatternSize = strPatternStr.size();
         while (strMaster.size() - nMasterBegin >= strPatternStr.size())
         {
             int j;
+            int nGSLen = 0;  //好后缀长度
             for (j = nPatternEnd; j >= 0; --j)
             {
                 if (strPatternStr[j] != strMaster[nMasterBegin + j]) break;
+                ++nGSLen;
             }
 
             if (j < 0) {
                 return nMasterBegin;
             }
 
-            nMasterBegin = nMasterBegin + j + vecBCList[strMaster[nMasterBegin + j]];
+            int bcMoveLen = j + vecBCList[strMaster[nMasterBegin + j]];
 
-//             int si = j;
-//             char cBadCharacter = strMaster[nMasterBegin + j];
-//             int xi = vecBCList[cBadCharacter];
-//             if (xi == -1)
-//             {
-//                 nMasterBegin = si - xi;
-//             }
-//             else
-//             {
-//                 //TODO:应用好后缀规则?
-//             }
+            int gsMoveLen = 0;
+            if (suffix[nGSLen] != -1){
+                gsMoveLen = j - suffix[nGSLen] + 1;
+            }
+            else
+            {
+                if (prefix[nGSLen]){
+                    gsMoveLen = nPatternSize - nGSLen;
+                }
+                else
+                {
+                    gsMoveLen = nPatternSize;
+                }
+            }
 
+            nMasterBegin = nMasterBegin + (bcMoveLen< gsMoveLen)?bcMoveLen: gsMoveLen;
         }
 
     }
 
-    void buildList(const string& strPatternStr, vector<int>& vecBCList)
+    //生成坏字符表
+    void generateBC(const string& strPatternStr, vector<int>& vecBCList)
     {
         vecBCList.resize(maxHashSize_, -1);
 
@@ -113,6 +125,7 @@ public:
         }
     }
 
+    //生成好后缀规则
     void generateGS(const string& pattern, vector<int>& suffix, vector<bool>& prefix)
     {
         if (pattern.empty()) {
