@@ -60,15 +60,16 @@ public:
         vecList_.resize(maxHashSize_, -1);
     }
 
-    int match(const string& strMaster, const string& strPatternStr, vector<int>& vecBCList)
+    int match(const string& strMaster, const string& strPatternStr)
     {
         if (strMaster.size() < strPatternStr.size()
             || strMaster.empty()
             || strPatternStr.empty()
-            || vecBCList.empty()){
+            ){
             return -1;
         }
 
+        vector<int> vecBCList;
         generateBC(strPatternStr, vecBCList);
 
         vector<int> suffix; vector<bool> prefix;
@@ -153,3 +154,12 @@ private:
 
 
 };
+
+void call_BMMatch()
+{
+    string strPattern("example");
+    string strText("here is a simple example");
+    BMMatch objBMMatch;
+    int index = objBMMatch.match(strText, strPattern);
+    cout << "index: " << index << endl;
+}

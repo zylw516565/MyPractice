@@ -226,6 +226,8 @@ int main()
 	call_Emplace();
 	call_UniquePtr();
 
+	call_BMMatch();
+
 	string strPatternStr("abda");
 	BMMatch objBMMatch;  vector<int> vecBCList;
 	objBMMatch.generateBC(strPatternStr, vecBCList);
