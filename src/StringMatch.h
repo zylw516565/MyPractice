@@ -77,39 +77,42 @@ public:
 
         int nMasterBegin = 0; 
         int nPatternEnd = strPatternStr.size() - 1;
-        int nPatternSize = strPatternStr.size();
-        while (strMaster.size() - nMasterBegin >= strPatternStr.size())
+        int nMasterSize = strMaster.size(); int nPatternSize = strPatternStr.size();
+        while (nMasterSize - nMasterBegin >= nPatternSize)
         {
             int j;
-            int nGSLen = 0;  //好后缀长度
             for (j = nPatternEnd; j >= 0; --j)
             {
                 if (strPatternStr[j] != strMaster[nMasterBegin + j]) break;
-                ++nGSLen;
             }
 
             if (j < 0) {
                 return nMasterBegin;
             }
 
-            int bcMoveLen = j + vecBCList[strMaster[nMasterBegin + j]];
-
+            int bcMoveLen = j - vecBCList[strMaster[nMasterBegin + j]];
             int gsMoveLen = 0;
-            if (suffix[nGSLen] != -1){
-                gsMoveLen = j - suffix[nGSLen] + 1;
-            }
-            else
-            {
-                if (prefix[nGSLen]){
-                    gsMoveLen = nPatternSize - nGSLen;
+
+            int nGSLen = nPatternSize - 1 - j; //好后缀长度
+            if (j < nPatternEnd) {  //如果有好后缀
+                if (suffix[nGSLen] != -1) { //如果好后缀在模式串中有匹配的字符串
+                    gsMoveLen = j - suffix[nGSLen] + 1;
                 }
                 else
                 {
                     gsMoveLen = nPatternSize;
+
+                    for (int r = j+2; r <= nPatternSize - 1; ++r)
+                    {
+                        if (prefix[nPatternSize - r]) {
+                            gsMoveLen = r; 
+                            break;
+                        }
+                    }
                 }
             }
 
-            nMasterBegin = nMasterBegin + (bcMoveLen< gsMoveLen)?bcMoveLen: gsMoveLen;
+            nMasterBegin = nMasterBegin + std::max(bcMoveLen, gsMoveLen);
         }
 
     }
