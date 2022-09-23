@@ -166,3 +166,39 @@ void call_BMMatch()
     int index = objBMMatch.match(strText, strPattern);
     cout << "index: " << index << endl;
 }
+
+class KMP
+{
+public:
+    int match(const string& master, const string& pattern)
+    {
+        if (master.size() < pattern.size()) return -1;
+
+        vector<int> next(pattern.size());
+        //generateGP();
+        int masterSize = master.size(); int patternSize = pattern.size();
+        int masterBegin = 0;
+        while (masterSize - masterBegin >= patternSize)
+        {
+            int j = 0;
+            for (; j < patternSize; ++j)
+            {
+                if(patternSize[j] != master[masterBegin + j]) break;
+            }
+
+            if (j == patternSize){
+                return masterBegin;
+            }
+
+            if(next[j - 1] != -1){
+                masterBegin = j - next[j - 1] - 1;
+            }
+            else{
+                masterBegin = j - next[j - 1];
+            }
+        }
+
+    }
+
+};
+
