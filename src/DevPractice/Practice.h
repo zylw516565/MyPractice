@@ -118,3 +118,66 @@ void call_UniquePtr()
 // 	std::unique_ptr<int> sp4(sp3);
 // 	std::unique_ptr<int> sp5 = sp3;
 }
+
+shared_ptr<string> testSharedPtrFunc(shared_ptr<string> sp)
+{
+	cout << "sp.use_count(): " << sp.use_count() << endl;
+	return sp;
+}
+
+void call_SharedPtr()
+{
+	std::shared_ptr<string> sp1;
+
+	if (sp1 && sp1->empty())
+		*sp1 = "hi";
+
+	*sp1;
+	cout << "sp1: " << sp1 << " sp1.get(): " << sp1.get() << endl;
+
+	//sp1->size();
+	//(*sp1).empty();
+	std::shared_ptr<string> sp2;
+	std::swap(sp1, sp2);
+	sp1.swap(sp2);
+
+	std::shared_ptr<string> sp3(new string("hello"));
+	std::shared_ptr<string> sp4(sp3);
+	std::shared_ptr<string> sp5;
+	cout << "before swap: " << "sp3.use_count(): " << sp3.use_count() << " sp4.use_count(): " << sp4.use_count() << " sp5.use_count(): " << sp5.use_count() << endl;
+	sp5.swap(sp4);
+	cout << "after swap: " << "sp3.use_count(): " << sp3.use_count() << " sp4.use_count(): " << sp4.use_count() << " sp5.use_count(): " << sp5.use_count() << endl;
+
+	std::shared_ptr<string> sp6(std::make_shared<string>("world"));
+	//std::shared_ptr<int> sp7;
+	//sp6.swap(sp7);  //编译不过, sp7中的指针必须能转成string*
+	std::shared_ptr<string> sp8(new string("123"));
+	cout << "before =: " << " sp6.use_count(): " << sp6.use_count() 
+		 << " sp8.use_count(): " << sp8.use_count() << endl;
+	sp8 = sp6;
+
+	auto sp9 = std::make_shared<int>();
+	auto sp10 = std::make_shared<string>();
+	cout << "before call: " << "sp10.use_count(): " << sp10.use_count() << endl;
+	testSharedPtrFunc(sp10);
+	cout << "after call: " << "sp10.use_count(): " << sp10.use_count() << endl;
+}
+
+bool testRetValue(const string& str)
+{
+	if (str.empty())
+	{
+		return false;
+	}
+
+	for (auto i = 0; i < 10; ++i)
+	{
+		return true;
+	}
+
+}
+
+void call_testRetValue()
+{
+	cout << "testRetValue(123); " << testRetValue("123") << endl;
+}
