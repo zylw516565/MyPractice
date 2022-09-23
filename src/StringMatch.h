@@ -183,7 +183,7 @@ public:
             int j = 0;
             for (; j < patternSize; ++j)
             {
-                if(patternSize[j] != master[masterBegin + j]) break;
+                if(pattern[j] != master[masterBegin + j]) break;
             }
 
             if (j == patternSize){
