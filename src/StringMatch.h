@@ -174,8 +174,9 @@ public:
     {
         if (master.size() < pattern.size()) return -1;
 
-        vector<int> next(pattern.size());
-        //generateGP();
+        vector<int> next;
+        getNext(pattern, next);
+
         int masterSize = master.size(); int patternSize = pattern.size();
         int masterBegin = 0;
         while (masterSize - masterBegin >= patternSize)
@@ -200,5 +201,34 @@ public:
 
     }
 
+private:
+    void getNext(const string& pattern, vector<int>& next)
+    {
+        next.resize(pattern.size());
+        next[0] = -1;
+        int i = 0, j = -1;
+        while (i < pattern.size())
+        {
+            if (j == -1 || pattern[i] == pattern[j])
+            {
+                ++i;
+                ++j;
+                next[i] = j;
+            }
+            else
+                j = next[j];
+        }
+    }
+
 };
+
+void call_KMPMatch()
+{
+    string strPattern("abababca");
+    string strText("ababababca");
+    KMP objKMP;
+    int index = objKMP.match(strText, strPattern);
+    cout << "index: " << index << endl;
+}
+
 
