@@ -201,6 +201,34 @@ public:
 
     }
 
+    int matchNice(const string& master, const string& pattern)
+    {
+        if (master.size() < pattern.size()) return -1;
+
+        vector<int> next;
+        getNext(pattern, next);
+
+        int i = 0;
+        int j = 0;
+        while (i < master.size() && j < pattern.size())
+        {
+            if (j == -1 || master[i] == pattern[j])
+            {
+                i++;
+                j++;
+            }
+            else
+                j = next[j];
+        }
+
+        if (j == pattern.size())
+        {
+            return i - j;
+        }
+        else
+            return -1;
+    }
+
 private:
     void getNext(const string& pattern, vector<int>& next)
     {
@@ -229,6 +257,7 @@ void call_KMPMatch()
     KMP objKMP;
     int index = objKMP.match(strText, strPattern);
     cout << "index: " << index << endl;
+
+    index = objKMP.matchNice(strText, strPattern);
+    cout << "index: " << index << endl;
 }
-
-
