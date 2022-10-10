@@ -125,6 +125,37 @@ shared_ptr<string> testSharedPtrFunc(shared_ptr<string> sp)
 	return sp;
 }
 
+const auto use_factory(const string& arg)
+{
+	shared_ptr<string> p = make_shared<string>(arg);
+	cout << "p.use_count(): " << p.use_count() << endl;
+	return p;
+}
+
+class StrBlob
+{
+public:
+	typedef vector<string>::size_type size_type;
+
+private:
+	shared_ptr<vector<string>> data_;
+	void check(size_type i, const string& msg) const;
+
+public:
+	StrBlob() = default;
+	StrBlob(std::initializer_list<string> il);
+	size_type size() const { return data_->size(); }
+	bool empty() const { return data_->empty(); }
+	//添加和删除元素
+	void push_back(const string& t) {data_->push_back(t); }
+	void pop_back();
+
+	//元素访问
+	string& front();
+	string& back();
+
+};
+
 void call_SharedPtr()
 {
 	std::shared_ptr<string> sp1;
@@ -161,6 +192,10 @@ void call_SharedPtr()
 	cout << "before call: " << "sp10.use_count(): " << sp10.use_count() << endl;
 	testSharedPtrFunc(sp10);
 	cout << "after call: " << "sp10.use_count(): " << sp10.use_count() << endl;
+
+	string strArg("hello");
+	auto sp11 = use_factory(strArg);
+	cout << "sp11.use_count(): " << sp11.use_count() << endl;
 }
 
 bool testRetValue(const string& str)
