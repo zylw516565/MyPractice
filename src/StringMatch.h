@@ -261,3 +261,104 @@ void call_KMPMatch()
     index = objKMP.matchNice(strText, strPattern);
     cout << "index: " << index << endl;
 }
+
+const int TrieNodeMaxSize = 26;
+
+class TrieTree
+{
+public:
+
+    struct TrieNode
+    {
+        char data_;
+        bool isEndingChar = false;
+        vector<shared_ptr<TrieNode>> children;
+        //TrieNode* children[TrieNodeMaxSize];
+
+        TrieNode(const char data)
+        {
+            data_ = data;
+            children.resize(TrieNodeMaxSize);
+        }
+    };
+
+    TrieTree()
+    :root_(make_shared<TrieNode>('/'))
+    {
+    }
+
+    //向TrieTree插入一个字符串
+    void insert(const string& target)
+    {
+        if (target.empty()) return;
+
+        auto p = root_;
+        for (const auto& t : target)
+        {
+            char index = t - 'a';
+            if (p->children[index] == nullptr)
+            {
+                auto newNode(make_shared<TrieNode>(t));
+                p->children[index] = newNode;
+            }
+
+            p = p->children[index];
+        }
+
+        p->isEndingChar = true;
+    }
+
+    //在Trie树中查找一个字符串
+    bool find(const string& pattern)
+    {
+        if (pattern.empty())
+            return false;
+
+        auto p = root_;
+        for (const auto& sub : pattern)
+        {
+            char index = sub - 'a';
+            if (p->children[index] == nullptr)
+                return false;
+
+            p = p->children[index];
+        }
+
+        if (!p->isEndingChar)
+            return false;
+        else
+            return true;
+    }
+
+private:
+    shared_ptr<TrieNode> root_;
+
+};
+
+void call_TrieTree()
+{
+    TrieTree objTrieTree;
+    bool bFind = objTrieTree.find("hello");
+    cout << "objTrieTree.find(hello): " << bFind << endl;
+
+    objTrieTree.insert("hello");
+    objTrieTree.insert("how");
+    objTrieTree.insert("hi");
+    objTrieTree.insert("her");
+
+    objTrieTree.insert("so");
+    objTrieTree.insert("see");
+
+    bFind = objTrieTree.find("hello");
+    cout << "objTrieTree.find(hello): " << bFind << endl;
+
+    bFind = objTrieTree.find("hel");
+    cout << "objTrieTree.find(hel): " << bFind << endl;
+
+    bFind = objTrieTree.find("how");
+    cout << "objTrieTree.find(how): " << bFind << endl;
+
+    bFind = objTrieTree.find("se");
+    cout << "objTrieTree.find(se): " << bFind << endl;
+
+}

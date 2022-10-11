@@ -229,6 +229,7 @@ int main()
 	call_SharedPtr();
 	call_testRetValue();
 	call_KMPMatch();
+	call_TrieTree();
 
 	vector<int> vecHeapDataV5 = { 0,7,5,19,8,4,1,20,13,16 };
 	vector<int> vecHeapDataV6 = vecHeapDataV5;
