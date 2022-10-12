@@ -139,22 +139,72 @@ public:
 
 private:
 	shared_ptr<vector<string>> data_;
-	void check(size_type i, const string& msg) const;
 
 public:
-	StrBlob() = default;
-	StrBlob(std::initializer_list<string> il);
+	StrBlob()
+		:data_(make_shared<vector<string>>())
+	{}
+
+	StrBlob(std::initializer_list<string> il)
+		:data_(make_shared<vector<string>>(il))
+	{}
+
 	size_type size() const { return data_->size(); }
 	bool empty() const { return data_->empty(); }
 	//添加和删除元素
 	void push_back(const string& t) {data_->push_back(t); }
-	void pop_back();
+	void pop_back()
+	{
+        check(0, "pop_back on empty StrBlob");
+        return data_->pop_back();
+	}
 
 	//元素访问
-	string& front();
-	string& back();
+	string& front()
+	{
+		check(0, "front on empty StrBlob");
+		return data_->front();
+	}
+
+//     const string front()
+//     {
+//         check(0, "front on empty StrBlob");
+//         return data_->front();
+//     }
+
+	string& back()
+	{
+        check(0, "back on empty StrBlob");
+        return data_->back();
+	}
+
+//     const string back()
+//     {
+//         check(0, "back on empty StrBlob");
+//         return data_->back();
+//     }
+
+private:
+    void check(size_type i, const string& msg) const
+	{
+		if (i >= data_->size())
+			throw out_of_range(msg);
+	}
 
 };
+
+void call_StrBlob()
+{
+	StrBlob b1;
+	{
+		StrBlob b2 = {"a", "an", "the"};
+		b1 = b2;
+		b2.push_back("about");
+		cout << "b2.size()" << b2.size() << endl;
+	}
+	
+	cout << "b1.size()" << b1.size() << endl;
+}
 
 void call_SharedPtr()
 {
