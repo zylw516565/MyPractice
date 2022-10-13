@@ -273,7 +273,6 @@ public:
         char data_;
         bool isEndingChar = false;
         vector<shared_ptr<TrieNode>> children;
-        //TrieNode* children[TrieNodeMaxSize];
 
         TrieNode(const char data)
         {
