@@ -131,7 +131,7 @@
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>
-      <PreprocessorDefinitions>NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>NDEBUG;_CONSOLE;%(PreprocessorDefinitions);_CRT_SECURE_NO_WARNINGS</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <LanguageStandard>stdcpp17</LanguageStandard>
       <Optimization>Disabled</Optimization>
@@ -155,6 +155,7 @@
   <ItemGroup>
     <ClInclude Include="PimplMode.h" />
     <ClInclude Include="SharedPtr.h" />
+    <ClInclude Include="src\DevPractice\DataRecover.h" />
     <ClInclude Include="src\DevPractice\Practice.h" />
     <ClInclude Include="src\Graph.h" />
     <ClInclude Include="src\LRUCache.h" />

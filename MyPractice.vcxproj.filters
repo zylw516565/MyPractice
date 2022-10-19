@@ -69,5 +69,8 @@
     <ClInclude Include="src\DevPractice\Practice.h">
       <Filter>DevPractice</Filter>
     </ClInclude>
+    <ClInclude Include="src\DevPractice\DataRecover.h">
+      <Filter>DevPractice</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

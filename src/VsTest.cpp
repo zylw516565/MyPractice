@@ -11,6 +11,7 @@
 #include "Graph.h"
 #include "StringMatch.h"
 #include "DevPractice/Practice.h"
+#include "DevPractice/DataRecover.h"
 
 
 #include <fstream>      // std::filebuf
@@ -221,6 +222,8 @@ int main()
 	//		break;
 	//	}
 	//}
+
+	call_DataRecover();
 
 	call_StructuredBinding();
 	//call_Emplace();
