@@ -92,7 +92,8 @@ public:
 
     int Recover(const char* pFileName, CANDataMap& mapCAN)
     {
-        FILE* fp = fopen(pFileName, "rb");
+        FILE* fp = nullptr;
+        fopen_s(&fp, pFileName, "rb");
         if (NULL == fp) {
             printf("open file:[%s] failed!\n", pFileName);
             return -1;

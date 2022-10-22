@@ -166,11 +166,11 @@ public:
 		return data_->front();
 	}
 
-//     const string front()
-//     {
-//         check(0, "front on empty StrBlob");
-//         return data_->front();
-//     }
+    const string& front() const
+    {
+        check(0, "front on empty StrBlob");
+        return data_->front();
+    }
 
 	string& back()
 	{
@@ -178,11 +178,11 @@ public:
         return data_->back();
 	}
 
-//     const string back()
-//     {
-//         check(0, "back on empty StrBlob");
-//         return data_->back();
-//     }
+    const string& back() const
+    {
+        check(0, "back on empty StrBlob");
+        return data_->back();
+    }
 
 private:
     void check(size_type i, const string& msg) const
@@ -198,6 +198,11 @@ void call_StrBlob()
 	StrBlob b1;
 	{
 		StrBlob b2 = {"a", "an", "the"};
+		const StrBlob b3 = { "a", "an", "the" };
+
+		b2.front();
+		b3.front();
+
 		b1 = b2;
 		b2.push_back("about");
 		cout << "b2.size()" << b2.size() << endl;
