@@ -193,31 +193,82 @@ private:
 
 };
 
+class FunctionConst {
+public:
+    int value;
+	FunctionConst() :value(100) {
+		// TODO Auto-generated constructor stub
+
+	}
+
+	~FunctionConst() {
+		// TODO Auto-generated destructor stub
+	}
+
+	const int getValue() {
+		return value;//返回值是 const, 使用指针时很有用.
+	}
+
+	int getValue2() const {
+		//此函数不能修改class FunctionConst的成员函数 value
+		//value = 15;//错误的, 因为函数后面加 const
+		return value;
+	}
+
+	void testOverLoad(int*) {
+		cout << "void testOverLoad(int*)" << endl;
+	}
+
+    //void testOverLoad(int* const) {}
+	void testOverLoad(const int*) {
+		cout << "void testOverLoad(const int*)" << endl;
+	}
+
+	void testOverLoad(int&) {
+		cout << "void testOverLoad(int&)" << endl;
+	}
+
+	void testOverLoad(const int&) {
+		cout << "void testOverLoad(const int&)" << endl;
+	}
+
+	//--------------------------------------------------
+    void testOverLoadV2(const int*) {
+        cout << "void testOverLoadV2(const int*)" << endl;
+    }
+
+    void testOverLoadV2(const int&) {
+        cout << "void testOverLoadV2(const int&)" << endl;
+    }
+
+	const string &shorterString(const string &s1, const string &s2)
+	{
+		return s1.size() <= s2.size() ? s1 : s2;
+	}
+
+	string &shorterString(string &s1, string &s2)
+	{
+		auto& r = shorterString(const_cast<const string&>(s1),
+			                    const_cast<const string&>(s2));
+
+		return const_cast<string&>(r);
+	}
+
+	int get() { ; }
+	//double get() { ; }
+
+};
+
 void test_ConstRef(const string& str)
 {
-	class FunctionConst {
-    public:
-        int value;
-		FunctionConst() :value(100) {
-			// TODO Auto-generated constructor stub
+    int a = 0;
+    FunctionConst objFunctionConst;
+    objFunctionConst.testOverLoad(&a);
+    objFunctionConst.testOverLoad(a);
 
-		}
+    objFunctionConst.testOverLoadV2(&a);
+    objFunctionConst.testOverLoadV2(a);
 
-		~FunctionConst() {
-			// TODO Auto-generated destructor stub
-		}
-
-		const int getValue() {
-			return value;//返回值是 const, 使用指针时很有用.
-		}
-
-		int getValue2() const {
-			//此函数不能修改class FunctionConst的成员函数 value
-			//value = 15;//错误的, 因为函数后面加 const
-			return value;
-		}
-
-	};
 }
 
 void call_StrBlob()
@@ -239,6 +290,7 @@ void call_StrBlob()
 	
 	cout << "b1.size()" << b1.size() << endl;
 }
+
 
 void call_SharedPtr()
 {
