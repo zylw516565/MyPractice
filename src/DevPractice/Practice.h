@@ -193,8 +193,37 @@ private:
 
 };
 
+void test_ConstRef(const string& str)
+{
+	class FunctionConst {
+    public:
+        int value;
+		FunctionConst() :value(100) {
+			// TODO Auto-generated constructor stub
+
+		}
+
+		~FunctionConst() {
+			// TODO Auto-generated destructor stub
+		}
+
+		const int getValue() {
+			return value;//返回值是 const, 使用指针时很有用.
+		}
+
+		int getValue2() const {
+			//此函数不能修改class FunctionConst的成员函数 value
+			//value = 15;//错误的, 因为函数后面加 const
+			return value;
+		}
+
+	};
+}
+
 void call_StrBlob()
 {
+	test_ConstRef("hello");
+
 	StrBlob b1;
 	{
 		StrBlob b2 = {"a", "an", "the"};
