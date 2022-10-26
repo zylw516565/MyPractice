@@ -291,9 +291,12 @@ void call_StrBlob()
 	cout << "b1.size()" << b1.size() << endl;
 }
 
-
 void call_SharedPtr()
 {
+	int* pi1 = new int;
+	int* pi2 = new int();
+	cout << "*pi1 = " << *pi1 << "\n*pi2 = " << *pi2 << endl;
+
 	std::shared_ptr<string> sp1;
 
 	if (sp1 && sp1->empty())
@@ -332,6 +335,10 @@ void call_SharedPtr()
 	string strArg("hello");
 	auto sp11 = use_factory(strArg);
 	cout << "sp11.use_count(): " << sp11.use_count() << endl;
+
+	int a; double b; string c;
+	auto sp12 = new auto(a);
+	//auto sp13 = new auto{a,b,c};
 }
 
 bool testRetValue(const string& str)
