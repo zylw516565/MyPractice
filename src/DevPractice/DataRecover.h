@@ -72,6 +72,9 @@ typedef map<long long, list<CANSignalCfg> > CANSignalCfgMAP;  //CAN–≈∫≈µƒ≈‰÷√–≈œ
 //#define LOG_ERROR(...) LY_LOG_ERROR(GetDefaultLogHandle(), ##__VA_ARGS__)
 //#define LOG_FATAL(...) LY_LOG_FATAL(GetDefaultLogHandle(), ##__VA_ARGS__)
 
+const char* szCanFile = "./10_959222_20220730104559.log";
+const string strCsvFile = "./10_959222_20220730104559.csv";
+
 class DataRecover
 {
 private:
@@ -83,9 +86,9 @@ public:
     int doRecover()
     {
         CANDataMap mapCAN;
-        Recover("./canlog", mapCAN);
+        Recover(szCanFile, mapCAN);
         Parse(mapCAN);
-        WriteCSV("./canlog.csv");
+        WriteCSV(strCsvFile);
 
         return 0;
     }

@@ -336,7 +336,7 @@ void call_SharedPtr()
 	auto sp11 = use_factory(strArg);
 	cout << "sp11.use_count(): " << sp11.use_count() << endl;
 
-	int a; double b; string c;
+	int a = 1; double b; string c;
 	auto sp12 = new auto(a);
 	//auto sp13 = new auto{a,b,c};
 }
