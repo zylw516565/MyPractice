@@ -271,8 +271,20 @@ void test_ConstRef(const string& str)
 
 }
 
+bool count_digits(const std::string& s)
+{
+	if (s.empty())
+		return false;
+		
+	return s.size() == std::count_if(s.begin(), s.end(),
+                         [](unsigned char c) { return std::isdigit(c); } // correct
+	                    );
+}
+
 void call_StrBlob()
 {
+	cout << "count_digits(\"a1b2c3\") = " << count_digits("123") << endl;
+
 	test_ConstRef("hello");
 
 	StrBlob b1;
@@ -339,6 +351,20 @@ void call_SharedPtr()
 	int a = 1; double b; string c;
 	auto sp12 = new auto(a);
 	//auto sp13 = new auto{a,b,c};
+
+	//const int* pciV2 = new const int; //未初始化: Linux下编译失败,Windows下可以.
+	const int* pci = new const int(1024);
+	const string* pcs = new const string;
+	int* pNotThrow = new (nothrow)int;  //new失败,返回空指针,并不抛出std::bad_alloc异常
+
+	int inta, * pa1 = &inta, * pa2 = nullptr;
+	double* pd1 = new double(33), * pd2 = pd1;
+	//delete inta;  //错误
+	//delete pa1;  //未定义:pa1指向一个局部变量
+	delete pd1;  //正确
+	//delete pd2;  //未定义
+	delete pa2;  //正确,释放一个空指针总是没有错误的
+	delete pci;  //正确,释放一个const对象
 }
 
 bool testRetValue(const string& str)
