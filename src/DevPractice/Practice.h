@@ -385,3 +385,37 @@ void call_testRetValue()
 {
 	cout << "testRetValue(123); " << testRetValue("123") << endl;
 }
+
+vector<int>* getVector()
+{
+	return new vector<int>{};
+}
+
+vector<int>* readDataIntoVector(vector<int>* vec)
+{
+	int n = 0;
+	for(int i=0; i < 5; ++i)
+	{
+		std::cin >> n;
+		vec->push_back(n);
+	}
+
+	return vec;
+}
+
+vector<int>* printVector(vector<int>* vec)
+{
+	for (const auto& elment : *vec)
+	{
+		cout << elment << " ";
+	}
+	cout << endl;
+
+	return vec;
+}
+
+void call_DynamicData()
+{
+	auto pVector = printVector(readDataIntoVector(getVector()));
+	delete pVector;
+}
