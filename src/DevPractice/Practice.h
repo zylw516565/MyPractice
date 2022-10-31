@@ -365,6 +365,16 @@ void call_SharedPtr()
 	//delete pd2;  //未定义
 	delete pa2;  //正确,释放一个空指针总是没有错误的
 	delete pci;  //正确,释放一个const对象
+
+	//shared_ptr<int> sp14 = new int(1024);
+	shared_ptr<int> sp15(new int(1024));
+	int* q = sp15.get();
+	{
+		//shared_ptr<int> sp16(q);
+		//sp16.reset();
+	}
+	int foo = *sp15;
+
 }
 
 bool testRetValue(const string& str)
@@ -414,8 +424,54 @@ vector<int>* printVector(vector<int>* vec)
 	return vec;
 }
 
+shared_ptr<vector<int>> getVectorV2()
+{
+	return  make_shared<vector<int>>();
+}
+
+void readDataIntoVectorV2(const shared_ptr<vector<int>>& vec)
+{
+    int n = 0;
+    for (int i = 0; i < 5; ++i)
+    {
+        std::cin >> n;
+        vec->push_back(n);
+    }
+}
+
+void printVector(const shared_ptr<vector<int>>& vec)
+{
+    for (const auto& elment : *vec)
+    {
+        cout << elment << " ";
+    }
+    cout << endl;
+}
+
+shared_ptr<int> returnSharedPtr()
+{
+	//return new int(1);
+	return  shared_ptr<int>(new int(1));
+}
+
+void process(shared_ptr<int> ptr)
+{
+	cout << "*ptr = " << *ptr << endl;
+}
+
 void call_DynamicData()
 {
+	int* x(new int(1024));
+	//process(x);
+	{
+		process(shared_ptr<int>(x));
+	}
+	cout << "*x = " << *x << endl;
+
 	auto pVector = printVector(readDataIntoVector(getVector()));
 	delete pVector;
+
+	auto spVectorV2 = getVectorV2();
+	readDataIntoVectorV2(spVectorV2);
+	printVector(spVectorV2);
 }
