@@ -233,7 +233,8 @@ int main()
 	//call_KMPMatch();
 	call_TrieTree();
 	call_StrBlob();
-	call_DynamicData();
+	//call_DynamicData();
+	call_CircularRef();
 
 	vector<int> vecHeapDataV5 = { 0,7,5,19,8,4,1,20,13,16 };
 	vector<int> vecHeapDataV6 = vecHeapDataV5;

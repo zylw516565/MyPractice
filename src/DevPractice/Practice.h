@@ -107,6 +107,17 @@ void call_Emplace()
 	int x;
 }
 
+unique_ptr<int> clone(int p)
+{
+	return unique_ptr<int>(new int(p));
+}
+
+unique_ptr<int> cloneV2(int p)
+{
+    unique_ptr<int> ret(new int(p));
+	return ret;
+}
+
 void call_UniquePtr()
 {
 	std::unique_ptr<int> sp1(new int(123));
@@ -114,9 +125,16 @@ void call_UniquePtr()
 	std::unique_ptr<int> sp2;
 	sp2.reset(new int(123));
 
-	std::unique_ptr<int> sp3 = std::make_unique<int>(123);
+	std::unique_ptr<int> sp3 = std::make_unique<int>(456);
 // 	std::unique_ptr<int> sp4(sp3);
 // 	std::unique_ptr<int> sp5 = sp3;
+	std::unique_ptr<int> sp6(sp1.release());
+	sp6.reset(sp3.release());
+	sp1.release();
+
+	auto up1 = clone(2);
+	auto up2 = cloneV2(3);
+	cout << "*up1; " << *up1 << " *up2: " << *up2 << endl;
 }
 
 shared_ptr<string> testSharedPtrFunc(shared_ptr<string> sp)
@@ -474,4 +492,49 @@ void call_DynamicData()
 	auto spVectorV2 = getVectorV2();
 	readDataIntoVectorV2(spVectorV2);
 	printVector(spVectorV2);
+}
+
+#define CIRCULAR_REF 0
+
+class CB;
+class CA
+{
+public:
+	shared_ptr<CB> m_spb;
+
+
+	~CA()
+	{
+		int test;
+		test = 1;
+		cout << "~CA()" << endl;
+	}
+};
+
+class CB
+{
+public:
+
+#if CIRCULAR_REF
+	shared_ptr<CA> m_spa;
+#else
+	weak_ptr<CA> m_spa;
+#endif
+
+    ~CB()
+    {
+        int test;
+        test = 1;
+        cout << "~CB()" << endl;
+    }
+};
+
+
+void call_CircularRef()
+{
+shared_ptr<CA> spa(new CA);
+shared_ptr<CB> spb(new CB);
+
+spa->m_spb = spb;
+spb->m_spa = spa;
 }
