@@ -227,6 +227,7 @@ int main()
 	call_StructuredBinding();
 	//call_Emplace();
 	call_UniquePtr();
+	call_WeakPtr();
 	call_BMMatch();
 	call_SharedPtr();
 	call_testRetValue();

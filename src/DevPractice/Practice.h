@@ -135,6 +135,33 @@ void call_UniquePtr()
 	auto up1 = clone(2);
 	auto up2 = cloneV2(3);
 	cout << "*up1; " << *up1 << " *up2: " << *up2 << endl;
+
+	//int xi = 10;
+	//unique_ptr<int> up3(&xi);
+
+	int* pi = new int(2);
+	unique_ptr<int> up4(pi);
+}
+
+void call_WeakPtr()
+{
+	weak_ptr<int> wp;
+	//weak_ptr<int> wp1(new int(1));
+	//weak_ptr<int> wp2(make_unique<int>(1));
+	weak_ptr<int> wp3;
+	{
+		auto p = make_shared<int>(1);
+		wp3 = p;
+	}
+	//cout << *wp3 << endl;
+	if (auto spTmp = wp3.lock())
+	{
+		cout << "*spTmp: " << *spTmp << endl;
+	}
+	else
+	{
+		cout << "spTmp is nullptr" << endl;
+	}
 }
 
 shared_ptr<string> testSharedPtrFunc(shared_ptr<string> sp)
