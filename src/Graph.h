@@ -51,12 +51,11 @@ public:
         while (!queQueue.empty()) {
             int w = queQueue.front(); queQueue.pop();
 
-            for (auto elment : adjList_[w]){
+            for (const auto& elment : adjList_[w]) {
                 if (!vecVisited[elment]) {
                     vecPrev[elment] = w;
 
-                    if (elment == target)
-                    {
+                    if (elment == target) {
                         print(vecPrev, start, target); cout << endl;
                         return;
                     }
@@ -98,7 +97,7 @@ private:
             return;
         }
 
-        for (auto elment : adjList_[start]) {
+        for (const auto& elment : adjList_[start]) {
             if (!vecVisited[elment]) {
                 vecPrev[elment] = start;
                 recurDFS(vecVisited, vecPrev, elment, target);
