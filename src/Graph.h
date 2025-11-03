@@ -10,7 +10,7 @@ using std::cout;
 class Graph
 {
 private:
-    int count_;  //¶¥µã¸öÊý
+    int count_;  //é¡¶ç‚¹ä¸ªæ•°
     vector<list<int>> adjList_;
 
     //for dfs

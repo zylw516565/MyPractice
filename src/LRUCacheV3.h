@@ -23,7 +23,7 @@ public:
 
 	void get(int x)
 	{
-		//xÔÚÁ´±íÖĞ
+		//xåœ¨é“¾è¡¨ä¸­
 		auto iter = list_.begin();
 		for ( ; iter != list_.end(); iter++)
 		{
@@ -35,16 +35,16 @@ public:
 			}
 		}
 
-		//x²»ÔÚÁ´±íÖĞ
+		//xä¸åœ¨é“¾è¡¨ä¸­
 		if (list_.size() != maxSize_)
-		{//Á´±íÎ´Âú
+		{//é“¾è¡¨æœªæ»¡
 			list_.emplace_front(x);
 		}
-		//Á´±íÒÑÂú
+		//é“¾è¡¨å·²æ»¡
 		else
 		{
-			list_.pop_back();     //ÒÆ³ıÎ²²¿
-			list_.emplace_front(x);  //ÔÚÍ·²¿²åÈë
+			list_.pop_back();     //ç§»é™¤å°¾éƒ¨
+			list_.emplace_front(x);  //åœ¨å¤´éƒ¨æ’å…¥
 		}
 
 		return;
@@ -85,7 +85,7 @@ public:
 
 private:
     const int   maxSize_;
-    ListIntType cacheList_;    //´æ´¢key,value
+    ListIntType cacheList_;    //å­˜å‚¨key,value
     HashIntType cacheHashMap_;
 
 public:
@@ -101,34 +101,34 @@ public:
     {
         auto iter = cacheHashMap_.find(key);
         if (iter == cacheHashMap_.end())
-        {//key²»ÔÚÁ´±íÖĞ
+        {//keyä¸åœ¨é“¾è¡¨ä¸­
             return -1;
         }
 
-        //keyÔÚÁ´±íÖĞ, ÕÒµ½keyÔÚÁ´±íÖĞµÄÎ»ÖÃ,²¢½«ÆäÒÆµ½Á´±íÍ·²¿
+        //keyåœ¨é“¾è¡¨ä¸­, æ‰¾åˆ°keyåœ¨é“¾è¡¨ä¸­çš„ä½ç½®,å¹¶å°†å…¶ç§»åˆ°é“¾è¡¨å¤´éƒ¨
         cacheList_.splice(cacheList_.begin(), cacheList_, cacheHashMap_[key]);
         return cacheList_.front().second;
     }
 
     void put(const int key, const int value)
     {
-        //key´æÔÚÁ´±íÖĞ, getº¯ÊıÒÑ¾­½«ÆäÒÆµ½Í·²¿
+        //keyå­˜åœ¨é“¾è¡¨ä¸­, getå‡½æ•°å·²ç»å°†å…¶ç§»åˆ°å¤´éƒ¨
         if (get(key) != -1)
         {
             cacheList_.front().second = value;
         }
-        // key²»´æÔÚ
+        // keyä¸å­˜åœ¨
         else
         {
             if (maxSize_ == cacheList_.size())
-            {//Á´±íÒÑÂú
+            {//é“¾è¡¨å·²æ»¡
                 int delKey = cacheList_.back().second;
-                cacheList_.pop_back();     //ÒÆ³ıÎ²²¿
+                cacheList_.pop_back();     //ç§»é™¤å°¾éƒ¨
                 cacheHashMap_.erase(delKey);
             }
 
-            //Á´±íÎ´Âú
-            cacheList_.emplace_front(key, value);   //ÔÚÍ·²¿²åÈë
+            //é“¾è¡¨æœªæ»¡
+            cacheList_.emplace_front(key, value);   //åœ¨å¤´éƒ¨æ’å…¥
             cacheHashMap_[key] = cacheList_.begin();
         }
     }

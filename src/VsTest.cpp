@@ -186,7 +186,7 @@ int main()
 	objGraph.addEdge(4, 6);
 	objGraph.addEdge(5, 7);
 	objGraph.addEdge(6, 7);
-	//¹ã¶ÈÓÅÏÈ
+	//å¹¿åº¦ä¼˜å…ˆ
 	objGraph.bfs(0, 6);
 
 	Graph objGraphV2(9);
@@ -200,7 +200,7 @@ int main()
 	objGraphV2.addEdge(5, 7);
 	objGraphV2.addEdge(6, 8);
 	objGraphV2.addEdge(7, 8);
-	//Éî¶ÈÓÅÏÈ
+	//æ·±åº¦ä¼˜å…ˆ
 	objGraphV2.dfs(1, 7);
 
 	string strMainString("aabcaaaba");
@@ -208,7 +208,7 @@ int main()
 	StringMatch objStringMatch;
 	objStringMatch.match(strMainString, strTarget);
 
-	//´íÎó,´ıĞŞ¸Ä
+	//é”™è¯¯,å¾…ä¿®æ”¹
 	//int start = 0;
 	//while (start <= strMainString.size() - 1)
 	//{

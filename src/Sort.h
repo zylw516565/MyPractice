@@ -123,7 +123,7 @@ public:
 
     int insert(int value)
     {
-        //¶ÑÂúÁË,Ö±½Ó·µ»Ø
+        //å †æ»¡äº†,ç›´æŽ¥è¿”å›ž
         if (count_ >= maxCount_)
             return -1;
 
@@ -142,10 +142,10 @@ public:
 
     void removeMax()
     {
-        //¶ÑÎª¿Õ,Ö±½Ó·µ»Ø
+        //å †ä¸ºç©º,ç›´æŽ¥è¿”å›ž
         if (count_ <= 0) return;
 
-        //°Ñ×îºóÒ»¸öÔªËØ·Åµ½¶Ñ¶¥
+        //æŠŠæœ€åŽä¸€ä¸ªå…ƒç´ æ”¾åˆ°å †é¡¶
         data_[1] = data_[count_]; data_[count_] = 0;
         count_--;
         heapify(1);

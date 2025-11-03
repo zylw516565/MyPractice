@@ -9,7 +9,7 @@ using std::map;
 
 //********************
 //**Filename:LRUCache.h
-//**Discribe: LRUCacheÊµÏÖÎÄ¼ş£ºË«ÏòÁ´±í+map
+//**Discribe: LRUCacheå®ç°æ–‡ä»¶ï¼šåŒå‘é“¾è¡¨+map
 //**Date: 2018.7.26
 //**@author: Mr.xiong
 //*****
@@ -18,11 +18,11 @@ using std::map;
 using namespace std;
 
 
-//** Á´±í½Úµã½á¹¹Ìå
+//** é“¾è¡¨èŠ‚ç‚¹ç»“æ„ä½“
 
 struct ListNode
 {
-	int m_key;                //key,value ĞÎÊ½·½±ãmap´æ´¢¡£
+	int m_key;                //key,value å½¢å¼æ–¹ä¾¿mapå­˜å‚¨ã€‚
 	int m_value;
 	ListNode* pPre;
 	ListNode* pNext;
@@ -36,11 +36,11 @@ struct ListNode
 	}
 };
 
-//*  LRU»º´æÊµÏÖÀà  Ë«ÏòÁ´±í¡£
+//*  LRUç¼“å­˜å®ç°ç±»  åŒå‘é“¾è¡¨ã€‚
 class LRUCacheV2
 {
 public:
-	//** ¹¹Ôìº¯Êı³õÊ¼»¯»º´æ´óĞ¡
+	//** æ„é€ å‡½æ•°åˆå§‹åŒ–ç¼“å­˜å¤§å°
 	LRUCacheV2(int size)
 	{
 		m_capacity = size;
@@ -50,13 +50,13 @@ public:
 
 	~LRUCacheV2()
 	{
-		//**  Ò»¶¨Òª×¢Òâ£¬mapÊÍ·ÅÄÚ´æÊ±£¬ÏÈÊÍ·ÅÄÚ²¿newµÄÄÚ´æ£¬ÔÚÊÍ·ÅmapµÄÄÚ´æ
+		//**  ä¸€å®šè¦æ³¨æ„ï¼Œmapé‡Šæ”¾å†…å­˜æ—¶ï¼Œå…ˆé‡Šæ”¾å†…éƒ¨newçš„å†…å­˜ï¼Œåœ¨é‡Šæ”¾mapçš„å†…å­˜
 		map<int, ListNode*>::iterator it = mp.begin();
 		for (; it != mp.end();)
 		{
 			delete it->second;
 			it->second = NULL;
-			mp.erase(it++);    //** ×¢Òâ£ºÒ»¶¨ÒªÕâÑùĞ´£¬it++ ·ÅÔÚÆäËûÈÎºÎÒ»¸öµØ·½¶¼»áµ¼ÖÂÆäµü´úÆ÷Ê§Ğ§¡£
+			mp.erase(it++);    //** æ³¨æ„ï¼šä¸€å®šè¦è¿™æ ·å†™ï¼Œit++ æ”¾åœ¨å…¶ä»–ä»»ä½•ä¸€ä¸ªåœ°æ–¹éƒ½ä¼šå¯¼è‡´å…¶è¿­ä»£å™¨å¤±æ•ˆã€‚
 		}
 		delete pHead;
 		pHead = NULL;
@@ -64,17 +64,17 @@ public:
 		pTail = NULL;
 
 	}
-	//** ÕâÀïÖ»ÊÇÒÆ³ı£¬²¢²»É¾³ı½Úµã
+	//** è¿™é‡Œåªæ˜¯ç§»é™¤ï¼Œå¹¶ä¸åˆ é™¤èŠ‚ç‚¹
 	void Remove(ListNode* pNode)
 	{
-		// Èç¹ûÊÇÍ·½Úµã
+		// å¦‚æœæ˜¯å¤´èŠ‚ç‚¹
 		if (pNode->pPre == NULL)
 		{
 			pHead = pNode->pNext;
 			pHead->pPre = NULL;
 		}
 
-		// Èç¹ûÊÇÎ²½Úµã
+		// å¦‚æœæ˜¯å°¾èŠ‚ç‚¹
 		if (pNode->pNext == NULL)
 		{
 			pTail = pNode->pPre;
@@ -88,7 +88,7 @@ public:
 		}
 
 	}
-	//  ½«½Úµã·Åµ½Í·²¿£¬×î½üÓÃ¹ıµÄÊı¾İÒª·ÅÔÚ¶ÓÍ·¡£
+	//  å°†èŠ‚ç‚¹æ”¾åˆ°å¤´éƒ¨ï¼Œæœ€è¿‘ç”¨è¿‡çš„æ•°æ®è¦æ”¾åœ¨é˜Ÿå¤´ã€‚
 	void SetHead(ListNode* pNode)
 	{
 		pNode->pNext = pHead;
@@ -108,7 +108,7 @@ public:
 			pTail = pHead;
 		}
 	}
-	// * ²åÈëÊı¾İ£¬Èç¹û´æÔÚ¾ÍÖ»¸üĞÂÊı¾İ
+	// * æ’å…¥æ•°æ®ï¼Œå¦‚æœå­˜åœ¨å°±åªæ›´æ–°æ•°æ®
 	int Set(int key, int value)
 	{
 		map<int, ListNode*>::iterator it = mp.find(key);
@@ -125,14 +125,14 @@ public:
 			if (mp.size() >= m_capacity)
 			{
 				map<int, ListNode*>::iterator it = mp.find(pTail->m_key);
-				//´ÓÁ´±íÒÆ³ı
+				//ä»é“¾è¡¨ç§»é™¤
 				Remove(pTail);
-				//É¾³ıÖ¸ÕëÖ¸ÏòµÄÄÚ´æ
+				//åˆ é™¤æŒ‡é’ˆæŒ‡å‘çš„å†…å­˜
 				delete it->second;
-				//É¾³ımapÔªËØ
+				//åˆ é™¤mapå…ƒç´ 
 				mp.erase(it);
 			}
-			//·Åµ½Í·²¿
+			//æ”¾åˆ°å¤´éƒ¨
 			SetHead(NewNode);
 			mp[key] = NewNode;
 
@@ -143,7 +143,7 @@ public:
 
 
 
-	//»ñÈ¡»º´æÀïµÄÊı¾İ
+	//è·å–ç¼“å­˜é‡Œçš„æ•°æ®
 	int Get(int key)
 	{
 		map<int, ListNode*>::iterator it = mp.find(key);
@@ -156,7 +156,7 @@ public:
 		}
 		else
 		{
-			return -1;       //ÕâÀï²»Ì«ºÃ£¬ÓĞ¿ÉÄÜÈ¡µÃÖµÒ²Îª-1
+			return -1;       //è¿™é‡Œä¸å¤ªå¥½ï¼Œæœ‰å¯èƒ½å–å¾—å€¼ä¹Ÿä¸º-1
 		}
 	}
 
@@ -166,8 +166,8 @@ public:
 	}
 
 private:
-	int m_capacity;    //»º´æÈİÁ¿
-	ListNode* pHead;   //Í·½Úµã
-	ListNode* pTail;   //Î²½Úµã
-	map<int, ListNode*>  mp;   //mpÓÃÀ´´æÊı¾İ£¬´ïµ½findÎªo(1)¼¶±ğ¡£
+	int m_capacity;    //ç¼“å­˜å®¹é‡
+	ListNode* pHead;   //å¤´èŠ‚ç‚¹
+	ListNode* pTail;   //å°¾èŠ‚ç‚¹
+	map<int, ListNode*>  mp;   //mpç”¨æ¥å­˜æ•°æ®ï¼Œè¾¾åˆ°findä¸ºo(1)çº§åˆ«ã€‚
 };

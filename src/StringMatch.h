@@ -93,9 +93,9 @@ public:
             int bcMoveLen = j - vecBCList[strMaster[nMasterBegin + j]];
             int gsMoveLen = 0;
 
-            int nGSLen = nPatternSize - 1 - j; //�ú�׺����
-            if (j < nPatternEnd) {  //����кú�׺
-                if (suffix[nGSLen] != -1) { //����ú�׺��ģʽ������ƥ����ַ���
+            int nGSLen = nPatternSize - 1 - j; //好后缀长度
+            if (j < nPatternEnd) {  //如果有好后缀
+                if (suffix[nGSLen] != -1) { //如果好后缀在模式串中有匹配的字符串
                     gsMoveLen = j - suffix[nGSLen] + 1;
                 }
                 else
@@ -117,7 +117,7 @@ public:
 
     }
 
-    //���ɻ��ַ���
+    //生成坏字符表
     void generateBC(const string& strPatternStr, vector<int>& vecBCList)
     {
         vecBCList.resize(maxHashSize_, -1);
@@ -129,7 +129,7 @@ public:
         }
     }
 
-    //���ɺú�׺����
+    //生成好后缀规则
     void generateGS(const string& pattern, vector<int>& suffix, vector<bool>& prefix)
     {
         if (pattern.empty()) {
@@ -141,9 +141,9 @@ public:
         prefix.resize(nPatternLen, false);
         for (int i = 0; i < nPatternLen - 1; ++i)  //b[0, i]
         {
-            int j = i;  //b[0, i] ��β����b[0, m-1]�󹫹���׺�Ӵ�
-            int k = 0;  //������׺�Ӵ�����
-            while (j >= 0 && pattern[j] == pattern[nPatternLen - 1 - k]) {  // ��b[0, m-1]�󹫹���׺�Ӵ�
+            int j = i;  //b[0, i] 从尾部与b[0, m-1]求公共后缀子串
+            int k = 0;  //公共后缀子串长度
+            while (j >= 0 && pattern[j] == pattern[nPatternLen - 1 - k]) {  // 与b[0, m-1]求公共后缀子串
                 --j;
                 ++k;
                 suffix[k] = j + 1;
@@ -286,7 +286,7 @@ public:
     {
     }
 
-    //��TrieTree����һ���ַ���
+    //向TrieTree插入一个字符串
     void insert(const string& target)
     {
         if (target.empty()) return;
@@ -307,7 +307,7 @@ public:
         p->isEndingChar = true;
     }
 
-    //��Trie���в���һ���ַ���
+    //在Trie树中查找一个字符串
     bool find(const string& pattern)
     {
         if (pattern.empty())
